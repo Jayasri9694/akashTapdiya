@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Dropdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff5e3;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: #fff5e3;
+      position: relative;
+      z-index: 2000;
+    }
+
+    /* Logo */
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .navbar .logo img {
+      height: 25px;
+      margin-right: 8px;
+    }
+
+    /* Menu */
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      position: relative;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #444;
+      font-size: 15px;
+      transition: color 0.3s;
+      padding: 8px 12px;
+      display: block;
+    }
+
+    .navbar ul li a:hover {
+      color: #000;
+    }
+
+    /* Dropdown */
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .navbar ul li:hover ul {
+      display: block;
+    }
+
+    .navbar ul li ul li a {
+      padding: 10px 15px;
+      color: #444;
+    }
+
+    .navbar ul li ul li a:hover {
+      background: #f0f0f0;
+      color: #000;
+    }
+
+    /* Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #333;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ff9800;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* ====================
+       Mobile Sidebar Menu
+    ==================== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      /* hidden initially */
+      width: 250px;
+      height: 100%;
+      background: #f0f0f0;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      transition: left 0.3s ease;
+      padding: 20px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.active {
+      left: 0;
+      /* slide in from left */
+    }
+
+    .mobile-menu .close-btn {
+      font-size: 22px;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .mobile-menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .mobile-menu ul li ul {
+      display: none;
+      flex-direction: column;
+      padding-left: 15px;
+    }
+
+    .mobile-menu ul li.active ul {
+      display: flex;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .navbar {
+        padding: 15px 25px;
+      }
+
+      .navbar ul,
+      .social-icons {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+        /* hamburger visible */
+      }
+    }
+
+
+        /* Blog section */
+        body {
+            margin: 0;
+            font-family: "poppins", serif;
+            background: linear-gradient(to right, rgb(255, 245, 226), rgb(255, 247, 233));
+        }
+
+        .blog-section {
+            text-align: center;
+            padding: 120px 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .blog-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .blog-section h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin-top: 20px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .blog-section p {
+            margin-top: 0px;
+            font-size: 18px;
+            color: #444;
+        }
+
+        /* 2blog section */
+
+        /* Blog Section */
+        .blog-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            /* gap: 30px; */
+            padding-left:200px;
+            padding-right: 50px;
+            padding-top: 100px;
+            padding-bottom: 50px;
+            background: #fff;
+            font-family: "Georgia", serif;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .blog-cards.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card Container */
+        .card {
+            position: relative;
+            width: 75%;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        /* Overlay */
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .categorys {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 8px 0;
+            transition: color 0.3s ease;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        /* Hover Effects */
+        .card:hover img {
+            transform: scale(1.08);
+        }
+
+        .card:hover .title {
+            color: #f0f0f0;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+
+
+        /* 6blog section */
+        /* Section Styling */
+        .latest-blog-section {
+            padding: 60px 80px;
+            background: #fff;
+            font-family: "Georgia", serif;
+            text-align: center;
+        }
+
+        .latest-blog-section h1 {
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #222;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        /* Blog Grid */
+        .latest-blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .latest-blog-grid.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Blog Content */
+        .blog-content {
+            padding: 18px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: #f2f2f2;
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .blog-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #222;
+            transition: color 0.3s ease;
+        }
+
+        .blog-title:hover {
+            color: #555;
+        }
+
+        .blog-date {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .blog-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Load More Button */
+        .load-more-btn {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #222;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more-btn:hover {
+            background: #444;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .latest-blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .latest-blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .latest-blog-section {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Footer section */
+        .footer-section {
+            background: #222d32;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            padding: 60px 20px 0;
+        }
+
+        /* Newsletter Section */
+        .footer-newsletter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer-newsletter h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .footer-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-form input[type="email"] {
+            padding: 14px 16px;
+            border: none;
+            border-radius: 4px;
+            width: 300px;
+            outline: none;
+        }
+
+        .footer-form button {
+            background: #e6a84c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 14px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-form button:hover {
+            background: #c7892f;
+        }
+
+        /* Footer Main */
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 50px auto;
+            gap: 40px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-main h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer-main p,
+        .footer-main a {
+            font-size: 0.9rem;
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-main a:hover {
+            color: #fff;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            background: #1a2327;
+            padding: 15px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-bottom .bottom-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-social a:hover {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+  <nav class="navbar">
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="logo">
+      ALEESA ORIELLE
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li>
+        <a href="#">Book +</a>
+        <ul>
+          <li><a href="Book.html">Book</a></li>
+          <li><a href="BookDetails.html">BookDetails</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Pages +</a>
+        <ul>
+          <li><a href="Event.html">Event</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Blog.html">Blog</a></li>
+        </ul>
+      </li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li>
+        <a href="#" class="dropdown-toggle">Book +</a>
+        <ul>
+          <li><a href="Book.html">Book</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Pages +</a>
+        <ul>
+          <li><a href="Event.html">Event</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Blog.html">Blog</a></li>
+        </ul>
+      </li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeBtn = document.getElementById("close-btn");
+    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+    // Open menu
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.add("active");
+    });
+
+    // Close menu
+    closeBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    });
+
+    // Dropdown toggle inside sidebar
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const parentLi = toggle.parentElement;
+        parentLi.classList.toggle("active");
+      });
+    });
+  </script>
+
+    <section class="blog-section" id="blog">
+        <h1>Blog</h1>
+        <p>
+            From creative journeys to thoughtful insights find your<br>
+            next read here to improve your skills.
+        </p>
+    </section>
+
+    <script>
+        // Animate Blog section when page loads
+        window.addEventListener("load", () => {
+            document.getElementById("blog").classList.add("active");
+        });
+    </script>
+    <!-- 2blog section -->
+    <section class="blog-cards" id="blogCards">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="images/blog home1.jpg"
+                alt="Blog 1">
+            <div class="card-overlay">
+                <span class="categorys">Habits</span>
+                <h3 class="title">The Habits That Shaped My Writing</h3>
+                <p class="date">June 2, 2025</p>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="images/blog home 2.jpg"
+                alt="Blog 2">
+            <div class="card-overlay">
+                <span class="categorys">Stories</span>
+                <h3 class="title">From Daily Journals to Published Stories</h3>
+                <p class="date">June 2, 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animation
+        window.addEventListener("scroll", () => {
+            const section = document.getElementById("blogCards");
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                section.classList.add("active");
+            }
+        });
+    </script>
+
+
+    <!-- 6blog section -->
+    <section class="latest-blog-section">
+        <h1>Latest Blog Update</h1>
+        <div class="latest-blog-grid" id="latestBlogGrid">
+
+            <!-- Card 1 -->
+            <div class="blog-card card-one">
+                <img src="images/blog home1.jpg" alt="Blog 1">
+                <div class="blog-content">
+                    <span class="blog-category">Habits</span>
+                    <h3 class="blog-title">The Habits That Shaped My Writing</h3>
+                    <p class="blog-date">June 2, 2025</p>
+                    <p class="blog-desc">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisl ac viverra egestas
+                        nullam...</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="blog-card card-two">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80"
+                    alt="Blog 2">
+                <div class="blog-content">
+                    <span class="blog-category">Stories</span>
+                    <h3 class="blog-title">From Daily Journals to Published Stories</h3>
+                    <p class="blog-date">June 2, 2025</p>
+                    <p class="blog-desc">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisl ac viverra egestas
+                        nullam...</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="blog-card card-three">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+                    alt="Blog 3">
+                <div class="blog-content">
+                    <span class="blog-category">Love</span>
+                    <h3 class="blog-title">Why I Still Love Writing Fiction</h3>
+                    <p class="blog-date">June 2, 2025</p>
+                    <p class="blog-desc">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisl ac viverra egestas
+                        nullam...</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="blog-card card-four">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800&q=80"
+                    alt="Blog 4">
+                <div class="blog-content">
+                    <span class="blog-category">Inspiration</span>
+                    <h3 class="blog-title">Finding Inspiration in Everyday Life</h3>
+                    <p class="blog-date">June 3, 2025</p>
+                    <p class="blog-desc">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisl ac viverra egestas
+                        nullam...</p>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="blog-card card-five">
+                <img src="https://images.unsplash.com/photo-1526312426976-f4d754fa9bd6?auto=format&fit=crop&w=800&q=80"
+                    alt="Blog 5">
+                <div class="blog-content">
+                    <span class="blog-category">Tips</span>
+                    <h3 class="blog-title">10 Tips to Improve Your Writing Skills</h3>
+                    <p class="blog-date">June 4, 2025</p>
+                    <p class="blog-desc">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisl ac viverra egestas
+                        nullam...</p>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="blog-card card-six">
+                <img src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=800&q=80"
+                    alt="Blog 6">
+                <div class="blog-content">
+                    <span class="blog-category">Journey</span>
+                    <h3 class="blog-title">My Journey as a Storyteller</h3>
+                    <p class="blog-date">June 5, 2025</p>
+                    <p class="blog-desc">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisl ac viverra egestas
+                        nullam...</p>
+                </div>
+            </div>
+
+        </div>
+        <button class="load-more-btn">Load More</button>
+    </section>
+
+
+    <script>
+        // Scroll animation
+        window.addEventListener("scroll", () => {
+            const section = document.getElementById("latestBlogGrid");
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                section.classList.add("active");
+            }
+        });
+    </script>
+
+
+    <!-- Footer section  -->
+    <footer class="footer-section">
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+            <h2>Stay informed with our newsletter, sign up for free!</h2>
+            <form class="footer-form">
+                <input type="email" placeholder="Enter your email">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+        <!-- Footer Main -->
+        <div class="footer-main">
+            <!-- Quick Links -->
+            <div>
+                <h2>Quick Link</h2>
+                <a href="#">About</a>
+                <a href="#">Book</a>
+                <a href="#">Event</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <!-- Logo + About -->
+            <div>
+                <img src="images/logo.png" alt="Logo" style="max-width:120px; margin-bottom:15px;">
+                <p>Author, mentor, and storyteller. Aleesa writes with heart and helps others grow through words that
+                    matter, and lasting impact.</p>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h2>Contact Info</h2>
+                <p>admin@support.com</p>
+                <p>+62 23 2375 1099</p>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="bottom-container">
+                <p>Copyright © 2025. All rights reserved. Powered by Gutenverse Blocks Addons.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="#"><i class="fab fa-x-twitter"></i> Twitter</a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i> Linkedin</a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>

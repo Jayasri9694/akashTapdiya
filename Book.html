@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Dropdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff5e3;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: #fff5e3;
+            position: relative;
+            z-index: 2000;
+        }
+
+        /* Logo */
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .navbar .logo img {
+            height: 25px;
+            margin-right: 8px;
+        }
+
+        /* Menu */
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            position: relative;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #444;
+            font-size: 15px;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            color: #000;
+        }
+
+        /* Dropdown */
+        .navbar ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 150px;
+            z-index: 1000;
+        }
+
+        .navbar ul li:hover ul {
+            display: block;
+        }
+
+        .navbar ul li ul li a {
+            padding: 10px 15px;
+            color: #444;
+        }
+
+        .navbar ul li ul li a:hover {
+            background: #f0f0f0;
+            color: #000;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff9800;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* ====================
+       Mobile Sidebar Menu
+    ==================== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            /* hidden initially */
+            width: 250px;
+            height: 100%;
+            background: #f0f0f0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+            transition: left 0.3s ease;
+            padding: 20px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+            /* slide in from left */
+        }
+
+        .mobile-menu .close-btn {
+            font-size: 22px;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .mobile-menu ul li ul {
+            display: none;
+            flex-direction: column;
+            padding-left: 15px;
+        }
+
+        .mobile-menu ul li.active ul {
+            display: flex;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 25px;
+            }
+
+            .navbar ul,
+            .social-icons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+                /* hamburger visible */
+            }
+        }
+
+        /* --- Section Wrapper --- */
+        .books-collections {
+            padding: 60px 20px;
+            background: linear-gradient(to right, rgb(255, 245, 226), rgb(255, 247, 233));
+            text-align: center;
+            font-family: "Georgia", serif;
+        }
+
+        /* --- Section Title --- */
+        .books-collections h1 {
+            margin-top: 15px;
+            font-size: 4.2rem;
+            margin-bottom: 40px;
+            color: #222;
+            font-weight: 600;
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+        }
+
+        /* --- Grid Layout --- */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* Always 3 books per row */
+            gap: 40px;
+            justify-items: center;
+        }
+
+        /* --- Book Card --- */
+        .books-card {
+            background: linear-gradient(rgb(254, 218, 145), rgb(254, 242, 219));
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            max-width: 320px;
+            text-align: left;
+            font-family: "Playfair Display", serif;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* --- Rating Badge --- */
+        .books-card .rating {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #222;
+            color: #fff;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* --- New Release Badge --- */
+        .books-card .new-release {
+            position: absolute;
+            top: 41%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgb(100, 155, 99);
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: cursive;
+            font-size: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Book Image --- */
+        .books-card img {
+            margin-left: 75px;
+            width: 50%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 30px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Hover Animation */
+        .books-card:hover img {
+            animation: shake 0.6s ease-in-out;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(2deg);
+            }
+
+            50% {
+                transform: rotate(-2deg);
+            }
+
+            75% {
+                transform: rotate(2deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* --- Title --- */
+        .books-card h3 {
+            font-size: 2.2rem;
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            margin: 15px 0 10px;
+            color: #222;
+        }
+
+        /* --- Subtitle --- */
+        .books-card p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        /* --- Responsive Layout --- */
+        @media (max-width: 1024px) {
+            .books-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 per row on tablets */
+            }
+        }
+
+        @media (max-width: 640px) {
+            .books-grid {
+                grid-template-columns: 1fr;
+                /* 1 per row on mobile */
+            }
+        }
+
+        /* partner section */
+        /* --- Section Wrapper --- */
+        .partners-section {
+            padding: 60px 20px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .partners-section h2 {
+            font-size: 2.5rem;
+            font-family: "Playfair Display", serif;
+            font-weight: 400;
+            font-style: normal;
+            margin-bottom: 50px;
+            color: #222;
+            animation: fadeUp 1s ease-in-out;
+        }
+
+        /* --- Grid Layout --- */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 per row */
+            gap: 40px;
+            justify-items: center;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+                /* 2 per row tablet */
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partners-grid {
+                grid-template-columns: 1fr;
+                /* 1 per row mobile */
+                gap: 25px;
+            }
+        }
+
+        /* --- Logo Card --- */
+        .partner-card {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 180px;
+            height: 100px;
+            transition: transform 0.4s ease;
+            cursor: pointer;
+        }
+
+        .partner-card img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: grayscale(100%);
+            opacity: 0.8;
+            transition: all 0.4s ease;
+        }
+
+        /* --- Hover Effects --- */
+        .partner-card:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        .partner-card:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .partner-card {
+            animation: fadeUp 0.9s ease-in-out;
+            animation-fill-mode: both;
+        }
+
+        /* book stat section */
+        /* --- Section Wrapper --- */
+        .book-stats-section {
+            padding: 60px 20px;
+            background: #fff;
+            text-align: center;
+        }
+
+        /* --- Grid Layout --- */
+        .book-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            justify-items: center;
+            align-items: center;
+        }
+
+
+        /* --- Counter Card --- */
+        .book-stat {
+            font-family: "Georgia", serif;
+            animation: fadeUp 1s ease-in-out both;
+        }
+
+        .book-stat .number-wrapper {
+            font-size: 52px;
+            font-weight: 600;
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            color: #222;
+            line-height: 1.2;
+        }
+
+        .book-stat sup {
+            font-size: 30px;
+            color: #444;
+            margin-left: 3px;
+        }
+
+        .book-stat .title {
+            font-size: 16px;
+            color: #555;
+            margin-top: 8px;
+            display: block;
+            animation: fadeIn 1.2s ease-in-out both;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* poster section */
+
+        .Featured-book-section {
+            /* light beige background like screenshot */
+            padding: 80px 20px;
+            max-width: 1469px;
+            width: 97%;
+            height: 350px;
+            font-family: "Playfair Display", serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-size: 2.5rem;
+            font-style: normal;
+        }
+
+        /* Flex Container */
+        .Featured-book-container {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            justify-content: space-between;
+            margin: auto;
+            gap: 40px;
+        }
+
+        /* Left side (book + signature) */
+        .Featured-book-left {
+            flex: 1;
+            position: relative;
+            animation: fadeInLeft 1s ease forwards;
+        }
+
+        /* Book image styling */
+        .Book-image img {
+            width: 320px;
+            /* adjust width */
+            height: auto;
+            /* keep proportions */
+            display: block;
+            transform: rotate(-8deg);
+            /* tilt the book */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .Signature-image {
+            top: 10px;
+        }
+
+        .Signature-image img {
+            width: 200px;
+            opacity: 0.9;
+        }
+
+        /* Right side (text + button) */
+        .Featured-book-right {
+            flex: 1.2;
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        .Featured-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .Featured-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        /* Button */
+        .Featured-btn {
+            display: inline-block;
+            padding: 14px 26px;
+            background: #222;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+            animation: popIn 1.2s ease forwards;
+        }
+
+        .Featured-btn:hover {
+            background: #444;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* faq question section */
+        .faq-section {
+            max-width: 1200;
+            width: 97%;
+            /* full width */
+            padding: 80px 20px;
+            font-family: "Poppins", sans-serif;
+            background-color: white;
+        }
+
+        .faq-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: playfair display, sans-serif;
+            margin-bottom: 50px;
+            font-weight: 400;
+            animation: fadeInDown 1s ease;
+        }
+
+        /* Container (2 equal columns) */
+        .faq-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 60px;
+            max-width: 1200px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .faq-column {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* FAQ Item */
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+            padding: 18px 0;
+            cursor: pointer;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Question row */
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            /* text left, + right */
+            align-items: center;
+            /* vertical center */
+            font-size: 1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Icon */
+        .faq-icon {
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        /* Answer (hidden by default) */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        /* Active state */
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 12px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            /* turns + into x */
+        }
+
+        /* Footer section */
+        .footer-section {
+            background: #222d32;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            padding: 60px 20px 0;
+        }
+
+        /* Newsletter Section */
+        .footer-newsletter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 90px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer-newsletter h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .footer-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-form input[type="email"] {
+            padding: 14px 16px;
+            border: none;
+            border-radius: 4px;
+            width: 300px;
+            outline: none;
+        }
+
+        .footer-form button {
+            background: #e6a84c;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 14px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .footer-form button:hover {
+            background: #c7892f;
+        }
+
+        /* Footer Main */
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 50px auto;
+            gap: 40px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-main h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer-main p,
+        .footer-main a {
+            font-size: 0.9rem;
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-main a:hover {
+            color: #fff;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            background: #1a2327;
+            padding: 15px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-bottom .bottom-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-social a:hover {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="logo">
+            ALEESA ORIELLE
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li>
+                <a href="#">Book +</a>
+                <ul>
+                    <li><a href="Book.html">Book</a></li>
+                    <li><a href="BookDetails.html">BookDetails</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Pages +</a>
+                <ul>
+                    <li><a href="Event.html">Event</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                </ul>
+            </li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Hamburger -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li>
+                <a href="#" class="dropdown-toggle">Book +</a>
+                <ul>
+                    <li><a href="Book.html">Book</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle">Pages +</a>
+                <ul>
+                    <li><a href="Event.html">Event</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                </ul>
+            </li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeBtn = document.getElementById("close-btn");
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+        // Open menu
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.add("active");
+        });
+
+        // Close menu
+        closeBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+        });
+
+        // Dropdown toggle inside sidebar
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                const parentLi = toggle.parentElement;
+                parentLi.classList.toggle("active");
+            });
+        });
+    </script>
+
+    </head>
+
+    <body>
+
+        <section class="books-collections">
+            <h1>Book Collections</h1>
+            <div class="books-grid">
+
+                <!-- Book 1 -->
+                <div class="books-card">
+                    <span class="rating">★ 5.0</span>
+                    <div class="new-release">
+                        <h2>New Release</h2>
+                    </div>
+                    <img src="images/front-mountain 1.webp" alt="Mountain Souls">
+                    <h3>Nature – Mountain Souls, Endless Skies</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta
+                        liona.</p>
+                </div>
+
+                <!-- Book 2 -->
+                <div class="books-card">
+                    <span class="rating">★ 5.0</span>
+                    <img src="images/front-skies 2.webp" alt="Ashes in the Highlands">
+                    <h3>Fiction – Ashes in the Highlands Skies</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta
+                        liona.</p>
+                </div>
+
+                <!-- Book 3 -->
+                <div class="books-card">
+                    <span class="rating">★ 4.9</span>
+                    <img src="images/front-frozen 3.webp" alt="Frozen Hearth">
+                    <h3>Romance – Frozen Hearth, Broken Trails</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta
+                        liona.</p>
+                </div>
+
+                <!-- Book 4 -->
+                <div class="books-card">
+                    <span class="rating">★ 5.0</span>
+                    <img src="images/front-frozen 3.webp" alt="When Silence Speaks the Truth">
+                    <h3>Poetry – When Silence Speaks the Truth</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta
+                        liona.</p>
+                </div>
+
+                <!-- Book 5 -->
+                <div class="books-card">
+                    <span class="rating">★ 4.9</span>
+                    <img src="images/front-skies 2.webp" alt="Where the Heart Feels Home">
+                    <h3>Memoir – Where the Heart Feels Home</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta
+                        liona.</p>
+                </div>
+
+                <!-- Book 6 -->
+                <div class="books-card">
+                    <span class="rating">★ 4.9</span>
+                    <img src="images/front-mountain 1.webp" alt="After the Storm Comes Clarity">
+                    <h3>Fantasy – After the Storm Comes Clarity</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta
+                        liona.</p>
+                </div>
+
+            </div>
+        </section>
+        <!-- partners section -->
+        <div class="partners-section">
+            <h2>Publishing & Media Partners</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <img src="images/proline 1.png" alt="ProLine">
+                </div>
+                <div class="partner-card">
+                    <img src="images/product 2.png" alt="Product">
+                </div>
+                <div class="partner-card">
+                    <img src="images/pinpoint 3.png" alt="PinPoint">
+                </div>
+                <div class="partner-card">
+                    <img src="images/ebooks 4.png" alt="Ebooks">
+                </div>
+                <div class="partner-card">
+                    <img src="images/mindfulness 5.png" alt="Mindfulness">
+                </div>
+                <div class="partner-card">
+                    <img src="images/border 6.png" alt="Border">
+                </div>
+            </div>
+        </div>
+
+        <!-- book stat section -->
+        <div class="book-stats-section">
+            <div class="book-stats-grid">
+                <div class="book-stat">
+                    <div class="number-wrapper">
+                        <span class="number" data-number="21" data-duration="3500">0</span><sup>+</sup>
+                    </div>
+                    <span class="title">Historical Fiction Books</span>
+                </div>
+
+                <div class="book-stat">
+                    <div class="number-wrapper">
+                        <span class="number" data-number="23" data-duration="3500">0</span><sup>+</sup>
+                    </div>
+                    <span class="title">Science Fiction Books</span>
+                </div>
+
+                <div class="book-stat">
+                    <div class="number-wrapper">
+                        <span class="number" data-number="17" data-duration="3500">0</span><sup>+</sup>
+                    </div>
+                    <span class="title">Biography Memoir Books</span>
+                </div>
+
+                <div class="book-stat">
+                    <div class="number-wrapper">
+                        <span class="number" data-number="16" data-duration="3500">0</span><sup>+</sup>
+                    </div>
+                    <span class="title">Fantasy Adventure Books</span>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const counters = document.querySelectorAll(".book-stat .number");
+
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute("data-number");
+                    const duration = +counter.getAttribute("data-duration") || 3000;
+                    let start = 0;
+                    const stepTime = Math.abs(Math.floor(duration / target));
+
+                    const updateCount = () => {
+                        start++;
+                        counter.textContent = start;
+                        if (start < target) {
+                            setTimeout(updateCount, stepTime);
+                        }
+                    };
+
+                    updateCount();
+                });
+            });
+        </script>
+        <!-- poster section -->
+
+        <div class="Featured-book-section">
+            <div class="Featured-book-container">
+
+                <!-- Left Column (Book + Signature) -->
+                <div class="Featured-book-left">
+                    <div class="Book-image">
+                        <img src="images/progress book green.webp" alt="Book Cover">
+                    </div>
+                    <div class="Signature-image">
+                        <img src="images/alisaa-signature.png" alt="Signature">
+                    </div>
+                </div>
+
+                <!-- Right Column (Text + Button) -->
+                <div class="Featured-book-right">
+                    <h2 class="Featured-title">See What Everyone’s Reading Right Now</h2>
+                    <p class="Featured-description">
+                        Uncover the book that’s creating a buzz. With emotional depth and unforgettable
+                        moments, it’s what readers are loving, sharing, and discussing across all platforms,
+                        every day, without fail leaving a lasting impression behind.
+                    </p>
+                    <a href="#" class="Featured-btn">Get A Copy</a>
+                </div>
+
+            </div>
+        </div>
+        <!-- faq question section -->
+        <div class="faq-section">
+            <h2 class="faq-title">Quick Answers to Common Reader Questions</h2>
+
+            <div class="faq-container">
+
+                <!-- Left Column -->
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <div class="faq-question">Are your books available in digital format? <span
+                                class="faq-icon">+</span></div>
+                        <div class="faq-answer">
+                            <p>Yes, all of my books are available in popular digital formats such as Kindle and ePub.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">How do you come up with your story ideas? <span
+                                class="faq-icon">+</span></div>
+                        <div class="faq-answer">
+                            <p>I draw inspiration from personal experiences, conversations, and observing the world
+                                around me.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Will there be a sequel to your latest book? <span
+                                class="faq-icon">+</span></div>
+                        <div class="faq-answer">
+                            <p>A sequel is in development! Stay tuned for updates in the coming months.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <div class="faq-question">Are your books available in print? <span class="faq-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, print versions are available through all major bookstores and online platforms.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Do you offer signed copies? <span class="faq-icon">+</span></div>
+                        <div class="faq-answer">
+                            <p>Yes! Signed copies can be ordered during special promotions or at book events.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Can I suggest topics for your future books? <span
+                                class="faq-icon">+</span></div>
+                        <div class="faq-answer">
+                            <p>Of course! I welcome reader feedback and suggestions — contact me via the website form.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll(".faq-question").forEach(question => {
+                question.addEventListener("click", () => {
+                    const item = question.parentElement;
+                    item.classList.toggle("active");
+                });
+            });
+        </script>
+
+        <!-- Footer section -->
+        <!-- Footer section -->
+        <footer class="footer-section">
+
+            <!-- Newsletter -->
+            <div class="footer-newsletter">
+                <h2>Stay informed with our newsletter, sign up for free!</h2>
+                <form class="footer-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+
+            <!-- Footer Main -->
+            <div class="footer-main">
+                <!-- Quick Links -->
+                <div>
+                    <h2>Quick Link</h2>
+                    <a href="#">About</a>
+                    <a href="#">Book</a>
+                    <a href="#">Event</a>
+                    <a href="#">Contact</a>
+                </div>
+
+                <!-- Logo + About -->
+                <div>
+                    <img src="images/logo.png" alt="Logo" style="max-width:120px; margin-bottom:15px;">
+                    <p>Author, mentor, and storyteller. Aleesa writes with heart and helps others grow through words
+                        that matter, and lasting impact.</p>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h2>Contact Info</h2>
+                    <p>admin@support.com</p>
+                    <p>+62 23 2375 1099</p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="bottom-container">
+                    <p>Copyright © 2025. All rights reserved. Powered by Gutenverse Blocks Addons.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-x-twitter"></i> Twitter</a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i> Linkedin</a>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+    </body>
+
+</html>
