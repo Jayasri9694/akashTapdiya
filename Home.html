@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar with Dropdown</title>
+  <link rel="stylesheet" href="Home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff5e3;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      background: #fff5e3;
+      position: relative;
+      z-index: 2000;
+    }
+
+    /* Logo */
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .navbar .logo img {
+      height: 25px;
+      margin-right: 8px;
+    }
+
+    /* Menu */
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      position: relative;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #444;
+      font-size: 15px;
+      transition: color 0.3s;
+      padding: 8px 12px;
+      display: block;
+    }
+
+    .navbar ul li a:hover {
+      color: #000;
+    }
+
+    /* Dropdown */
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .navbar ul li:hover ul {
+      display: block;
+    }
+
+    .navbar ul li ul li a {
+      padding: 10px 15px;
+      color: #444;
+    }
+
+    .navbar ul li ul li a:hover {
+      background: #f0f0f0;
+      color: #000;
+    }
+
+    /* Social Icons */
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #333;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ff9800;
+    }
+
+    /* Hamburger */
+    .menu-toggle {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* ====================
+       Mobile Sidebar Menu
+    ==================== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      /* hidden initially */
+      width: 250px;
+      height: 100%;
+      background: #f0f0f0;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+      transition: left 0.3s ease;
+      padding: 20px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.active {
+      left: 0;
+      /* slide in from left */
+    }
+
+    .mobile-menu .close-btn {
+      font-size: 22px;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .mobile-menu ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+
+    .mobile-menu ul li ul {
+      display: none;
+      flex-direction: column;
+      padding-left: 15px;
+    }
+
+    .mobile-menu ul li.active ul {
+      display: flex;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .navbar {
+        padding: 15px 25px;
+      }
+
+      .navbar ul,
+      .social-icons {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+        /* hamburger visible */
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <!-- Logo -->
+    <a href="#" class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="logo">
+      ALEESA ORIELLE
+    </a>
+
+    <!-- Desktop Menu -->
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li>
+        <a href="#">Book +</a>
+        <ul>
+          <li><a href="Book.html">Book</a></li>
+          <li><a href="BookDetails.html">BookDetails</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Pages +</a>
+        <ul>
+          <li><a href="Event.html">Event</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Blog.html">Blog</a></li>
+        </ul>
+      </li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <!-- Hamburger -->
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li>
+        <a href="#" class="dropdown-toggle">Book +</a>
+        <ul>
+          <li><a href="Book.html">Book</a></li>
+          <li><a href="BookDetails.html">BookDetails</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" class="dropdown-toggle">Pages +</a>
+        <ul>
+          <li><a href="Event.html">Event</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Blog.html">Blog</a></li>
+        </ul>
+      </li>
+      <li><a href="Contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const closeBtn = document.getElementById("close-btn");
+    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+    // Open menu
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.add("active");
+    });
+
+    // Close menu
+    closeBtn.addEventListener("click", () => {
+      mobileMenu.classList.remove("active");
+    });
+
+    // Dropdown toggle inside sidebar
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener("click", (e) => {
+        e.preventDefault();
+        const parentLi = toggle.parentElement;
+        parentLi.classList.toggle("active");
+      });
+    });
+  </script>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="main">
+      <!-- Your existing hero code here -->
+      <h1 class="ttl">Aleesa</h1>
+      <div class="book-stack">
+        <div class="book"><img src="images/front-book page.webp" alt="front book"></div>
+        <div class="book2"><img src="images/back-book.webp" alt="back book"></div>
+      </div>
+      <div class="sign"><img src="images/alisaa-signature.png" alt="signature"></div>
+      <div class="girl">
+        <img src="images/home cover girl image.webp" alt="girl">
+      </div>
+      <div class="right">
+        <h1 class="ttl1">Orielle</h1>
+        <h2 class="sub">Storyteller with a Purpose</h2>
+        <p class="txt">Want to experience what moves readers around the world? Enter your email to receive a special
+          offer today.</p>
+        <a href="#" class="btn">Discover More</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Achievements Section -->
+  <section class="achievements-section">
+    <h2>Inspired by Achievements</h2>
+    <div class="achievements-grid">
+      <div class="award">
+        <img src="images/awards-icon-1.png" alt="Award">
+        <p>Independent Publisher Book Awards 2025</p>
+      </div>
+      <div class="award">
+        <img src="images/awards-icon-2.png" alt="Award">
+        <p>Readers’ Favorite – New York 2024</p>
+      </div>
+      <div class="award">
+        <img src="images/awwards-icon-3.png" alt="Award">
+        <p>Pulitzer Prize 2023</p>
+      </div>
+      <div class="award">
+        <img src="images/awwards-icon-4.png" alt="Award">
+        <p>World Writers Weekly 2023</p>
+      </div>
+      <div class="award">
+        <img src="images/awards-icon-5.png" alt="Award">
+        <p>Next Gen Popular Book Awards 2022</p>
+      </div>
+      <div class="award">
+        <img src="images/awards-icon-6.png" alt="Award">
+        <p>Goodreads Choice Awards 2021</p>
+      </div>
+    </div>
+  </section>
+  <!-- progress section -->
+  <section class="progress-section">
+    <!-- Left Side -->
+    <div class="progress-text">
+      <h2>Fresh Stories and Writing Tips Weekly</h2>
+      <p>From personal reflections to published books, Aleesa’s path shows the true power of writing...</p>
+
+      <div class="progress-bar">
+        <div class="label"><span>My Ongoing Journey</span><span class="value">64%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" data-percent="64"></div>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="label"><span>Total Books Sold</span><span class="value">78%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" data-percent="78"></div>
+        </div>
+      </div>
+
+      <div class="progress-bar">
+        <div class="label"><span>Happy Readers</span><span class="value">93%</span></div>
+        <div class="progress-track">
+          <div class="progress-fill" data-percent="93"></div>
+        </div>
+      </div>
+
+      <!-- ✅ Button placed just below % bars -->
+      <div class="custom-button-wrapper">
+        <a class="custom-btn" href="#">
+          <span>Learn More</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Right Side -->
+    <div class="progress-image">
+      <img src="images/progress girl.webp" alt="girl reading" class="girl-img">
+
+      <!-- Book Overlay -->
+      <div class="book-overlay">
+        <img src="images/progress book green.webp" alt="book cover" class="book-img">
+      </div>
+    </div>
+  </section>
+  <script>
+    // Animate Progress Bars with Numbers
+    const progressBars = document.querySelectorAll('.progress-fill');
+
+    function animateBars() {
+      progressBars.forEach(bar => {
+        const target = bar.getAttribute('data-percent');
+        let width = 0;
+        let interval = setInterval(() => {
+          if (width >= target) {
+            clearInterval(interval);
+          } else {
+            width++;
+            bar.style.width = width + "%";
+            bar.parentElement.previousElementSibling.querySelector('.value').textContent = width + "%";
+          }
+        }, 20); // speed of counting
+      });
+    }
+
+    // Trigger on Scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateBars();
+          entry.target.classList.add("animate");
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(document.querySelector(".progress-section"));
+  </script>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stat-item">
+      <h2 class="count" data-target="17">0</h2>
+      <p>Years of Experience</p>
+    </div>
+    <div class="stat-item">
+      <h2 class="count" data-target="23">0</h2>
+      <p>Books Released Update</p>
+    </div>
+    <div class="stat-item">
+      <h2 class="count" data-target="14">0</h2>
+      <p>Writing Mentor Program</p>
+    </div>
+    <div class="stat-item">
+      <h2 class="count" data-target="10">0</h2>
+      <p>Multiple Writing Awards</p>
+    </div>
+  </section>
+
+  <script>
+    // Animate percentages and progress bars
+    document.addEventListener("DOMContentLoaded", () => {
+      const percents = document.querySelectorAll(".percent");
+      const fills = document.querySelectorAll(".progress-fill");
+
+      percents.forEach((percent, index) => {
+        const target = +percent.getAttribute("data-target");
+        let count = 0;
+        const interval = setInterval(() => {
+          if (count >= target) {
+            clearInterval(interval);
+          } else {
+            count++;
+            percent.textContent = count + "%";
+            fills[index].style.width = count + "%";
+          }
+        }, 30);
+      });
+
+      // Animate bottom stats
+      const counters = document.querySelectorAll(".count");
+      counters.forEach(counter => {
+        const target = +counter.getAttribute("data-target");
+        let count = 0;
+        const interval = setInterval(() => {
+          if (count >= target) {
+            clearInterval(interval);
+          } else {
+            count++;
+            counter.textContent = count + "+";
+          }
+        }, 50);
+      });
+    });
+  </script>
+  <!-- 4 Book section -->
+   <section class="books-section"> 
+  <h2>Discover the Books That Shaped My Writer’s Voice</h2>
+  <div class="book-grid">
+
+    <!-- Book 1 -->
+    <div class="books-card">
+      <span class="rating">★ 5.0</span>
+      <div class="new-release">
+        <h2>New Release</h2>
+      </div>
+      <img src="images/front-mountain 1.webp" alt="Mountain Souls">
+      <h3>Nature – Mountain Souls, Endless Skies</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta liona.</p>
+    </div>
+
+    <!-- Book 2 -->
+    <div class="books-card">
+      <span class="rating">★ 5.0</span>
+      <img src="images/front-skies 2.webp" alt="Ashes in the Highlands">
+      <h3>Fiction – Ashes in the Highlands Skies</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta liona.</p>
+    </div>
+
+    <!-- Book 3 -->
+    <div class="books-card">
+      <span class="rating">★ 4.9</span>
+      <img src="images/front-frozen 3.webp" alt="Frozen Hearth">
+      <h3>Romance – Frozen Hearth, Broken Trails</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta liona.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Event section -->
+ <div class="events-section">
+  <h2 class="events-title">Cool Events & Fun Activities You’ll Want to Join</h2>
+
+  <!-- Event 1 -->
+  <div class="event-card">
+    <div class="event-img">
+      <img src="images/book signing 1.jpg" alt="Book Signing">
+      <div class="event-date">
+        <h2>11</h2>
+        <p>Jun, 2025</p>
+      </div>
+    </div>
+    <div class="event-content">
+      <h3>Extraordinary Woman Book Signing</h3>
+      <ul>
+        <li><i class="gtn gtn-calendar-1-light"></i> Start at 3:00 PM & Finish at 7:30 PM, June 11, 2025</li>
+        <li><i class="gtn gtn-placeholder2-light"></i> Sanur Mall Galleria, Denpasar, Bali – Indonesia</li>
+      </ul>
+      <a href="#" class="button">Get A Ticket</a>
+    </div>
+  </div>
+
+  <!-- Event 2 -->
+  <div class="event-card">
+    <div class="event-img">
+      <img src="images/writinf workshop 2.jpg" alt="Writing Workshop">
+      <div class="event-date">
+        <h2>12</h2>
+        <p>Jul, 2025</p>
+      </div>
+    </div>
+    <div class="event-content">
+      <h3>Personal Growth Writing Workshops</h3>
+      <ul>
+        <li><i class="gtn gtn-calendar-1-light"></i> Start at 3:00 PM & Finish at 7:30 PM, July 12, 2025</li>
+        <li><i class="gtn gtn-placeholder2-light"></i> Sanur Mall Galleria, Denpasar, Bali – Indonesia</li>
+      </ul>
+      <a href="#" class="button">Get A Ticket</a>
+    </div>
+  </div>
+
+  <!-- Event 3 -->
+  <div class="event-card">
+    <div class="event-img">
+      <img src="images/book reading 3.jpg" alt="Book Discussion">
+      <div class="event-date">
+        <h2>15</h2>
+        <p>Aug, 2025</p>
+      </div>
+    </div>
+    <div class="event-content">
+      <h3>Book Reading & Discussion Event</h3>
+      <ul>
+        <li><i class="gtn gtn-calendar-1-light"></i> Start at 3:00 PM & Finish at 7:30 PM, August 15, 2025</li>
+        <li><i class="gtn gtn-placeholder2-light"></i> Mall Bali Dewata, Denpasar, Bali – Indonesia</li>
+      </ul>
+      <a href="#" class="button">Get A Ticket</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- poster section -->
+
+<div class="featured-book-section">
+  <div class="featured-book-container">
+    
+    <!-- Left Column (Book + Signature) -->
+    <div class="featured-book-left">
+      <div class="book-image">
+        <img src="images/progress book green.webp" alt="Book Cover">
+      </div>
+      <div class="signature-image">
+        <img src="images/alisaa-signature.png" alt="Signature">
+      </div>
+    </div>
+
+    <!-- Right Column (Text + Button) -->
+    <div class="featured-book-right">
+      <h2 class="featured-title">See What Everyone’s Reading Right Now</h2>
+      <p class="featured-description">
+        Uncover the book that’s creating a buzz. With emotional depth and unforgettable 
+        moments, it’s what readers are loving, sharing, and discussing across all platforms, 
+        every day, without fail leaving a lasting impression behind.
+      </p>
+      <a href="#" class="featured-btn">Get A Copy</a>
+    </div>
+
+  </div>
+</div>
+
+   <!-- faq question section -->
+<div class="faq-section">
+  <h2 class="faq-title">Quick Answers to Common Reader Questions</h2>
+  
+  <div class="faq-container">
+    
+    <!-- Left Column -->
+    <div class="faq-column">
+      <div class="faq-item">
+        <div class="faq-question">Are your books available in digital format? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <p>Yes, all of my books are available in popular digital formats such as Kindle and ePub.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do you come up with your story ideas? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <p>I draw inspiration from personal experiences, conversations, and observing the world around me.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Will there be a sequel to your latest book? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <p>A sequel is in development! Stay tuned for updates in the coming months.</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Column -->
+    <div class="faq-column">
+      <div class="faq-item">
+        <div class="faq-question">Are your books available in print? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <p>Yes, print versions are available through all major bookstores and online platforms.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Do you offer signed copies? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <p>Yes! Signed copies can be ordered during special promotions or at book events.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Can I suggest topics for your future books? <span class="faq-icon">+</span></div>
+        <div class="faq-answer">
+          <p>Of course! I welcome reader feedback and suggestions — contact me via the website form.</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<script>
+document.querySelectorAll(".faq-question").forEach(question => {
+  question.addEventListener("click", () => {
+    const item = question.parentElement;
+    item.classList.toggle("active");
+  });
+});
+</script>
+
+<!-- Blog section -->
+ <div class="blog-section">
+
+  <!-- Header -->
+  <div class="blog-header">
+    <h2>Fresh Stories and Writing Tips Weekly</h2>
+    <a href="#" class="view-more">View More</a>
+  </div>
+
+  <!-- Blog Grid -->
+  <div class="blog-grid">
+
+    <!-- Blog 1 -->
+    <div class="blog-card">
+      <div class="blog-image">
+        <img src="images/blog home1.jpg" alt="Blog 1">
+        <span class="blog-category">Habits</span>
+      </div>
+      <div class="blog-content">
+        <h3><a href="#">The Habits That Shaped My Writing</a></h3>
+        <div class="blog-meta">
+          <i class="gtn gtn-calendar-1-light"></i>
+          June 2, 2025
+        </div>
+        <p class="blog-excerpt">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisi ac viverra egestas nullam...</p>
+      </div>
+    </div>
+
+    <!-- Blog 2 -->
+    <div class="blog-card">
+      <div class="blog-image">
+        <img src="images/blog home 2.jpg" alt="Blog 2">
+        <span class="blog-category">Stories</span>
+      </div>
+      <div class="blog-content">
+        <h3><a href="#">From Daily Journals to Published Stories</a></h3>
+        <div class="blog-meta">
+          <i class="gtn gtn-calendar-1-light"></i>
+          June 2, 2025
+        </div>
+        <p class="blog-excerpt">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisi ac viverra egestas nullam...</p>
+      </div>
+    </div>
+
+    <!-- Blog 3 -->
+    <div class="blog-card">
+      <div class="blog-image">
+        <img src="images/blog home 3.jpg" alt="Blog 3">
+        <span class="blog-category">Love</span>
+      </div>
+      <div class="blog-content">
+        <h3><a href="#">Why I Still Love Writing Fiction</a></h3>
+        <div class="blog-meta">
+          <i class="gtn gtn-calendar-1-light"></i>
+          June 2, 2025
+        </div>
+        <p class="blog-excerpt">Lorem ipsum dolor sit amet consectetur. Venenatis elit nisi ac viverra egestas nullam...</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer section -->
+ <footer class="footer-section">
+
+  <!-- Newsletter -->
+  <div class="footer-newsletter">
+    <h2>Stay informed with our newsletter, sign up for free!</h2>
+    <form class="footer-form">
+      <input type="email" placeholder="Enter your email">
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+
+  <!-- Footer Main -->
+  <div class="footer-main">
+    <!-- Quick Links -->
+    <div>
+      <h2>Quick Link</h2>
+      <a href="#">About</a>
+      <a href="#">Book</a>
+      <a href="#">Event</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <!-- Logo + About -->
+    <div>
+      <img src="images/logo.png" alt="Logo" style="max-width:120px; margin-bottom:15px;">
+      <p>Author, mentor, and storyteller. Aleesa writes with heart and helps others grow through words that matter, and lasting impact.</p>
+    </div>
+
+    <!-- Contact Info -->
+    <div>
+      <h2>Contact Info</h2>
+      <p>admin@support.com</p>
+      <p>+62 23 2375 1099</p>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="bottom-container">
+      <p>Copyright © 2025. All rights reserved. Powered by Gutenverse Blocks Addons.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="#"><i class="fab fa-x-twitter"></i> Twitter</a>
+        <a href="#"><i class="fab fa-linkedin-in"></i> Linkedin</a>
+      </div>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+
+</html>
