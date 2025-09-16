@@ -8,188 +8,188 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff5e3;
-    }
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff5e3;
+        }
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      background: #fff5e3;
-      position: relative;
-      z-index: 2000;
-    }
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: #fff5e3;
+            position: relative;
+            z-index: 2000;
+        }
 
-    /* Logo */
-    .navbar .logo {
-      display: flex;
-      align-items: center;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      text-decoration: none;
-    }
+        /* Logo */
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
 
-    .navbar .logo img {
-      height: 25px;
-      margin-right: 8px;
-    }
+        .navbar .logo img {
+            height: 25px;
+            margin-right: 8px;
+        }
 
-    /* Menu */
-    .navbar ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-    }
+        /* Menu */
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
 
-    .navbar ul li {
-      position: relative;
-    }
+        .navbar ul li {
+            position: relative;
+        }
 
-    .navbar ul li a {
-      text-decoration: none;
-      color: #444;
-      font-size: 15px;
-      transition: color 0.3s;
-      padding: 8px 12px;
-      display: block;
-    }
+        .navbar ul li a {
+            text-decoration: none;
+            color: #444;
+            font-size: 15px;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            display: block;
+        }
 
-    .navbar ul li a:hover {
-      color: #000;
-    }
+        .navbar ul li a:hover {
+            color: #000;
+        }
 
-    /* Dropdown */
-    .navbar ul li ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      min-width: 150px;
-      z-index: 1000;
-    }
+        /* Dropdown */
+        .navbar ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 150px;
+            z-index: 1000;
+        }
 
-    .navbar ul li:hover ul {
-      display: block;
-    }
+        .navbar ul li:hover ul {
+            display: block;
+        }
 
-    .navbar ul li ul li a {
-      padding: 10px 15px;
-      color: #444;
-    }
+        .navbar ul li ul li a {
+            padding: 10px 15px;
+            color: #444;
+        }
 
-    .navbar ul li ul li a:hover {
-      background: #f0f0f0;
-      color: #000;
-    }
+        .navbar ul li ul li a:hover {
+            background: #f0f0f0;
+            color: #000;
+        }
 
-    /* Social Icons */
-    .social-icons {
-      display: flex;
-      gap: 15px;
-    }
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
 
-    .social-icons a {
-      color: #333;
-      font-size: 18px;
-      transition: color 0.3s;
-    }
+        .social-icons a {
+            color: #333;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
 
-    .social-icons a:hover {
-      color: #ff9800;
-    }
+        .social-icons a:hover {
+            color: #ff9800;
+        }
 
-    /* Hamburger */
-    .menu-toggle {
-      display: none;
-      font-size: 22px;
-      cursor: pointer;
-      color: #333;
-    }
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #333;
+        }
 
-    /* ====================
+        /* ====================
        Mobile Sidebar Menu
     ==================== */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      /* hidden initially */
-      width: 250px;
-      height: 100%;
-      background: #f0f0f0;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
-      transition: left 0.3s ease;
-      padding: 20px;
-      z-index: 3000;
-      display: flex;
-      flex-direction: column;
-    }
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            /* hidden initially */
+            width: 250px;
+            height: 100%;
+            background: #f0f0f0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+            transition: left 0.3s ease;
+            padding: 20px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+        }
 
-    .mobile-menu.active {
-      left: 0;
-      /* slide in from left */
-    }
+        .mobile-menu.active {
+            left: 0;
+            /* slide in from left */
+        }
 
-    .mobile-menu .close-btn {
-      font-size: 22px;
-      cursor: pointer;
-      align-self: flex-end;
-      margin-bottom: 20px;
-    }
+        .mobile-menu .close-btn {
+            font-size: 22px;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-bottom: 20px;
+        }
 
-    .mobile-menu ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
-    .mobile-menu ul li a {
-      text-decoration: none;
-      color: #333;
-      font-size: 16px;
-    }
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
 
-    .mobile-menu ul li ul {
-      display: none;
-      flex-direction: column;
-      padding-left: 15px;
-    }
+        .mobile-menu ul li ul {
+            display: none;
+            flex-direction: column;
+            padding-left: 15px;
+        }
 
-    .mobile-menu ul li.active ul {
-      display: flex;
-    }
+        .mobile-menu ul li.active ul {
+            display: flex;
+        }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .navbar {
-        padding: 15px 25px;
-      }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 25px;
+            }
 
-      .navbar ul,
-      .social-icons {
-        display: none;
-      }
+            .navbar ul,
+            .social-icons {
+                display: none;
+            }
 
-      .menu-toggle {
-        display: block;
-        /* hamburger visible */
-      }
-    }
+            .menu-toggle {
+                display: block;
+                /* hamburger visible */
+            }
+        }
 
 
         /* Blog section */
@@ -226,6 +226,35 @@
             color: #444;
         }
 
+        /* responsive */
+        /* Laptop Blog Intro */
+        @media (min-width: 1024px) {
+            .blog-section h1 {
+                font-size: 60px;
+            }
+
+            .blog-section p {
+                font-size: 18px;
+            }
+        }
+
+        /* Mobile Blog Intro */
+        @media (max-width: 768px) {
+            .blog-section {
+                padding: 80px 15px;
+            }
+
+            .blog-section h1 {
+                font-size: 32px;
+                line-height: 1.2;
+            }
+
+            .blog-section p {
+                font-size: 16px;
+            }
+        }
+
+
         /* 2blog section */
 
         /* Blog Section */
@@ -233,7 +262,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             /* gap: 30px; */
-            padding-left:200px;
+            padding-left: 200px;
             padding-right: 50px;
             padding-top: 100px;
             padding-bottom: 50px;
@@ -316,6 +345,36 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
+        /* responsive */
+        /* Laptop Blog Cards */
+        @media (min-width: 1024px) {
+            .blog-cards {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 100px 150px 50px 150px;
+                gap: 40px;
+            }
+
+            .card {
+                width: 90%;
+            }
+        }
+
+        /* Mobile Blog Cards */
+        @media (max-width: 768px) {
+            .blog-cards {
+                grid-template-columns: 1fr;
+                padding: 50px 20px;
+                gap: 20px;
+            }
+
+            .card {
+                width: 100%;
+            }
+
+            .card img {
+                height: 220px;
+            }
+        }
 
 
         /* 6blog section */
@@ -457,21 +516,41 @@
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
+        /* Laptop Latest Blog */
+        @media (min-width: 1024px) {
+            .latest-blog-section {
+                padding: 60px 80px;
+            }
+
+            .latest-blog-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 1024px) and (min-width: 769px) {
             .latest-blog-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
+        /* Mobile Latest Blog */
         @media (max-width: 768px) {
-            .latest-blog-grid {
-                grid-template-columns: 1fr;
-            }
-
             .latest-blog-section {
                 padding: 40px 20px;
             }
+
+            .latest-blog-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .blog-card img {
+                height: 180px;
+            }
         }
+
 
         /* Footer section */
         .footer-section {
@@ -609,102 +688,155 @@
                 transform: translateY(0);
             }
         }
+
+        /* responsive */
+        /* Laptop Footer */
+        @media (min-width: 1024px) {
+            .footer-newsletter {
+                flex-direction: row;
+                padding: 90px;
+                text-align: left;
+            }
+
+            .footer-main {
+                grid-template-columns: repeat(3, 1fr);
+                padding: 50px;
+                text-align: left;
+            }
+
+            .footer-form input[type="email"] {
+                width: 300px;
+            }
+        }
+
+        /* Mobile Footer */
+        @media (max-width: 768px) {
+            .footer-newsletter {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+                gap: 20px;
+            }
+
+            .footer-form {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .footer-form input[type="email"] {
+                width: 100%;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .footer-bottom .bottom-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-  <nav class="navbar">
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="logo">
-      ALEESA ORIELLE
-    </a>
+    <nav class="navbar">
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png" alt="logo">
+            ALEESA ORIELLE
+        </a>
 
-    <!-- Desktop Menu -->
-    <ul>
-      <li><a href="index.html">index</a></li>
-      <li><a href="About.html">About</a></li>
-      <li>
-        <a href="#">Book +</a>
+        <!-- Desktop Menu -->
         <ul>
-          <li><a href="Book.html">Book</a></li>
-          <li><a href="BookDetails.html">BookDetails</a></li>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li>
+                <a href="#">Book +</a>
+                <ul>
+                    <li><a href="Book.html">Book</a></li>
+                    <li><a href="BookDetails.html">BookDetails</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Pages +</a>
+                <ul>
+                    <li><a href="Event.html">Event</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                </ul>
+            </li>
+            <li><a href="Contact.html">Contact</a></li>
         </ul>
-      </li>
-      <li>
-        <a href="#">Pages +</a>
-        <ul>
-          <li><a href="Event.html">Event</a></li>
-          <li><a href="FAQ.html">FAQ</a></li>
-          <li><a href="Blog.html">Blog</a></li>
-        </ul>
-      </li>
-      <li><a href="Contact.html">Contact</a></li>
-    </ul>
 
-    <!-- Social Icons -->
-    <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook-f"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Hamburger -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li>
+                <a href="#" class="dropdown-toggle">Book +</a>
+                <ul>
+                    <li><a href="Book.html">Book</a></li>
+                    <li><a href="BookDetails.html">BookDetails</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle">Pages +</a>
+                <ul>
+                    <li><a href="Event.html">Event</a></li>
+                    <li><a href="FAQ.html">FAQ</a></li>
+                    <li><a href="Blog.html">Blog</a></li>
+                </ul>
+            </li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
     </div>
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeBtn = document.getElementById("close-btn");
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
 
-    <!-- Hamburger -->
-    <div class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
+        // Open menu
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.add("active");
+        });
 
-  <!-- Mobile Sidebar -->
-  <div class="mobile-menu" id="mobile-menu">
-    <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
-    <ul>
-      <li><a href="index.html">index</a></li>
-      <li><a href="About.html">About</a></li>
-      <li>
-        <a href="#" class="dropdown-toggle">Book +</a>
-        <ul>
-          <li><a href="Book.html">Book</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" class="dropdown-toggle">Pages +</a>
-        <ul>
-          <li><a href="Event.html">Event</a></li>
-          <li><a href="FAQ.html">FAQ</a></li>
-          <li><a href="Blog.html">Blog</a></li>
-        </ul>
-      </li>
-      <li><a href="Contact.html">Contact</a></li>
-    </ul>
-  </div>
-  <script>
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const closeBtn = document.getElementById("close-btn");
-    const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+        // Close menu
+        closeBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+        });
 
-    // Open menu
-    menuToggle.addEventListener("click", () => {
-      mobileMenu.classList.add("active");
-    });
-
-    // Close menu
-    closeBtn.addEventListener("click", () => {
-      mobileMenu.classList.remove("active");
-    });
-
-    // Dropdown toggle inside sidebar
-    dropdownToggles.forEach(toggle => {
-      toggle.addEventListener("click", (e) => {
-        e.preventDefault();
-        const parentLi = toggle.parentElement;
-        parentLi.classList.toggle("active");
-      });
-    });
-  </script>
+        // Dropdown toggle inside sidebar
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                const parentLi = toggle.parentElement;
+                parentLi.classList.toggle("active");
+            });
+        });
+    </script>
 
     <section class="blog-section" id="blog">
         <h1>Blog</h1>
@@ -724,8 +856,7 @@
     <section class="blog-cards" id="blogCards">
         <!-- Card 1 -->
         <div class="card">
-            <img src="images/blog index1.jpg"
-                alt="Blog 1">
+            <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Blog 1">
             <div class="card-overlay">
                 <span class="categorys">Habits</span>
                 <h3 class="title">The Habits That Shaped My Writing</h3>
@@ -735,8 +866,7 @@
 
         <!-- Card 2 -->
         <div class="card">
-            <img src="images/blog home 2.jpg"
-                alt="Blog 2">
+            <img src="images/blog home 2.jpg" alt="Blog 2">
             <div class="card-overlay">
                 <span class="categorys">Stories</span>
                 <h3 class="title">From Daily Journals to Published Stories</h3>
