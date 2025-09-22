@@ -142,7 +142,7 @@
 .txt {
   position: absolute;
   left: 930px;
-  top: 435px;
+  top: 470px;
   font-size: 1rem;
   margin: 20px 0;
   color: #444;
@@ -154,7 +154,7 @@
 .btn {
   position: absolute;
   left: 930px;
-  top: 550px;
+  top: 575px;
   display: inline-block;
   padding: 12px 25px;
   background: #222;
