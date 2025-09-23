@@ -424,6 +424,7 @@
     margin: 10px 0;
     width: 100%;
     max-width: 90%;
+    text-align: center;
   }
 
   /* Titles */
@@ -444,6 +445,7 @@
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 15px auto;
+    text-align: center;
   }
 
   /* Button */

@@ -393,31 +393,6 @@
             animation: fadeInUp 1.4s ease forwards;
         }
 
-        /* Partners */
-        .partners-title {
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            animation: fadeInUp 1.6s ease forwards;
-        }
-
-        .partners-logos {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .partners-logos img {
-            width: 90px;
-            filter: grayscale(100%);
-            transition: all 0.3s ease;
-        }
-
-        .partners-logos img:hover {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
         /* Right Side (Book Image) */
         .synopsis-right {
             flex: 1;
@@ -510,102 +485,13 @@
                 justify-content: center;
             }
 
-            .partners-logos {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
         }
 
-
-
-        /* 4 book section */
-
-        /* --- Section Wrapper --- */
-        .books-section {
-            padding: 60px 20px;
-            background: linear-gradient(to bottom, #fffaf3, #fdf1d9);
-            text-align: center;
-            font-family: "Georgia", serif;
-        }
-
-        /* --- Section Title --- */
-        .books-section h2 {
-            font-size: 2.8rem;
-            margin-bottom: 40px;
-            color: #222;
-            font-weight: 600;
-            font-family: "Playfair Display", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        /* --- Grid Layout --- */
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            /* Always 3 per row */
-            gap: 40px;
-            justify-items: center;
-        }
-
-        /* --- Book Card --- */
-        .books-card {
-            background: linear-gradient(rgb(254, 218, 145), rgb(254, 242, 219));
-            border-radius: 12px;
-            padding: 30px;
-            position: relative;
-            max-width: 380px;
-            text-align: left;
-            font-family: "Playfair Display", serif;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* --- Rating Badge --- */
-        .books-card .rating {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #222;
-            color: #fff;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        /* --- New Release Badge --- */
-        .books-card .new-release {
-            position: absolute;
-            top: 41%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgb(100, 155, 99);
-            color: white;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+        .purchase-links {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: cursive;
-            font-size: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* --- Book Image --- */
-        .books-card img {
-            margin-left: 35px;
-            width: 70%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 30px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Hover Animation */
-        .books-card:hover img {
-            animation: shake 0.6s ease-in-out;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
         @keyframes shake {
@@ -630,45 +516,166 @@
             }
         }
 
-        /* --- Title --- */
-        .books-card h3 {
-            font-size: 2.2rem;
-            font-family: "Playfair Display", serif;
-            font-weight: 400;
-            margin: 15px 0 10px;
-            color: #222;
+
+        /*  2nd bookdetails Container Layout */
+        .Synopsis-Container {
+            display: flex;
+            gap: 40px;
+            padding: 100px 90px;
+            background: #fff;
+            font-family: "Georgia", serif;
+            align-items: flex-start;
         }
 
-        /* --- Subtitle --- */
-        .books-card p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.4;
+        /* Left Side */
+        .Synopsis-Right {
+            flex: 2;
+            animation: fadeInLeft 1s ease forwards;
         }
 
-        /* --- Responsive Layout --- */
-        /* Laptop */
-        @media (min-width: 1024px) {
-            .book-grid {
-                grid-template-columns: repeat(3, 1fr);
+        .Synopsis-Title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .Synopsis-Text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 30px;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        /* Info Table */
+        .Synopsis-Info {
+            margin-bottom: 30px;
+        }
+
+        .Info-Row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            padding: 6px 0;
+            border-bottom: 1px solid #eee;
+            animation: fadeInUp 1.4s ease forwards;
+        }
+
+        /* Right Side (Book Image) */
+        .Synopsis-Left {
+            flex: 1;
+            text-align: center;
+            animation: fadeInRight 1s ease forwards;
+        }
+
+        .Book-Cover {
+            max-width: 280px;
+            border-radius: 5px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .Book-Cover:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Tablet */
-        @media (max-width: 1023px) and (min-width: 641px) {
-            .book-grid {
-                grid-template-columns: repeat(2, 1fr);
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* responsive */
+        /* Laptop */
+        @media (min-width: 1024px) {
+            .synopsis-container {
+                flex-direction: row;
+                padding: 100px 90px;
+                text-align: left;
+            }
+
+            .synopsis-left {
+                order: 1;
+            }
+
+            .synopsis-right {
+                order: 2;
             }
         }
 
         /* Mobile */
-        @media (max-width: 640px) {
-            .book-grid {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .Synopsis-Container {
+                flex-direction: column;
+                padding: 40px 20px;
+                align-items: center;
+                text-align: center;
             }
+
+            .Synopsis-Left {
+                order: 2;
+            }
+
+            .Synopsis-Right {
+                order: 1;
+                margin-bottom: 30px;
+                justify-content: center;
+            }
+
         }
 
+        @keyframes shake {
+            0% {
+                transform: rotate(0deg);
+            }
 
+            25% {
+                transform: rotate(2deg);
+            }
+
+            50% {
+                transform: rotate(-2deg);
+            }
+
+            75% {
+                transform: rotate(2deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
 
         /* Reviews section */
         .reviews-section {
@@ -942,43 +949,52 @@
             }
         }
 
-        /* responsive */
-        /* Laptop */
-        @media (min-width: 1024px) {
-            .footer-newsletter {
-                flex-direction: row;
-                text-align: left;
-                padding: 80px 60px;
-            }
+        /* ===========================
+   Footer Section Responsive
+   =========================== */
 
-            .footer-form {
-                flex-direction: row;
-                width: auto;
+        /* 📌 Laptop / Tablet (≤1024px) */
+        @media (max-width: 1024px) {
+            .footer-newsletter {
+                flex-direction: column;
+                /* stack title + form */
+                text-align: center;
+                gap: 25px;
+                padding: 60px 30px;
             }
 
             .footer-main {
-                grid-template-columns: repeat(3, 1fr);
-                text-align: left;
+                grid-template-columns: 1fr 1fr;
+                /* 2 columns instead of 3 */
+                gap: 30px;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .footer-main div {
+                margin: 0 auto;
             }
 
             .footer-bottom .bottom-container {
-                flex-direction: row;
-                justify-content: space-between;
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
         }
 
-        /* Mobile */
+        /* 📌 Mobile (≤768px) */
         @media (max-width: 768px) {
             .footer-newsletter {
                 flex-direction: column;
                 text-align: center;
-                padding: 40px 20px;
                 gap: 20px;
+                padding: 40px 20px;
             }
 
             .footer-form {
                 flex-direction: column;
                 width: 100%;
+                gap: 10px;
             }
 
             .footer-form input[type="email"] {
@@ -987,13 +1003,25 @@
 
             .footer-main {
                 grid-template-columns: 1fr;
+                /* single column */
                 text-align: center;
-                gap: 30px;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+
+            .footer-main h2 {
+                margin-bottom: 10px;
             }
 
             .footer-bottom .bottom-container {
                 flex-direction: column;
+                gap: 10px;
                 text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+                flex-wrap: wrap;
                 gap: 15px;
             }
         }
@@ -1013,10 +1041,10 @@
         <ul>
             <li><a href="Home.html">Home</a></li>
             <li><a href="About.html">About</a></li>
-           
+
             <li><a href="BookDetails.html">Book</a></li>
 
-           <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="Gallery.html">Gallery</a></li>
 
             <li><a href="Contact.html">Contact</a></li>
         </ul>
@@ -1041,7 +1069,7 @@
         <ul>
             <li><a href="Home.html">Home</a></li>
             <li><a href="About.html">About</a></li>
-           
+
             <li><a href="BookDetails.html">Book</a></li>
 
             <li><a href="Gallery.html">Gallery</a></li>
@@ -1137,85 +1165,75 @@
     <div class="synopsis-container">
         <!-- Left Column -->
         <div class="synopsis-left">
-            <h2 class="synopsis-title">Mountain Souls, Endless Skies – Synopsis</h2>
+            <h2 class="synopsis-title">Hey! I Know You Can Heal– 2021 </h2>
             <p class="synopsis-text">
-                A lyrical exploration of the bond between mountains and the soul, this book draws readers into
-                the stillness of high altitudes and the clarity found in open skies where thoughts breathe
-                freely and silence speaks deeply. Through poetic prose and reflective passages, Mountain Souls,
-                Endless Skies invites you on a journey inward, mirroring the quiet power of nature with the
-                quiet truths within ourselves. Each chapter unfolds like a breath slow, steady, and intentional
-                capturing the raw beauty of solitude and the soft lessons found in stillness. The mountain
-                becomes a metaphor for resilience, the sky a symbol of release. Between shifting clouds and
-                ancient rock, readers are gently guided toward introspection, healing, and emotional renewal.
-                Whether read in quiet mornings, lonely nights, or moments of transition, this book offers more
-                than words. It offers space to pause. To remember what has been forgotten in the noise of
-                everyday life.
+                "Hey! I Know You Can Heal" is a heartfelt collection of poetry and shayaris written in Hinglish. This
+                book unfolds the raw emotions of love, loss, and healing. As you journey through its pages, you'll find
+                unspoken feelings transformed into words — offering comfort, reflection, and a gentle reminder that
+                healing begins with self-discovery.
             </p>
 
             <!-- Info Table -->
             <div class="synopsis-info">
-                <div class="info-row"><span>Genre</span><span>: Nature Reflections</span></div>
-                <div class="info-row"><span>Language</span><span>: English, Bahasa</span></div>
-                <div class="info-row"><span>Publisher</span><span>: Skybook Publishing</span></div>
-                <div class="info-row"><span>Release Date</span><span>: 01 June, 2025</span></div>
-                <div class="info-row"><span>Number of Pages</span><span>: 112</span></div>
-                <div class="info-row"><span>Format Available</span><span>: Hardcover, eBook</span></div>
+                <div class="info-row"><span>Genre</span><span>: poetry</span></div>
+                <div class="info-row"><span>Language</span><span>: English</span></div>
+                <div class="info-row"><span>Publisher</span><span>: Akash Tapdiya</span></div>
+                <div class="info-row"><span>Release Date</span><span>: 11 March, 2021</span></div>
+                <div class="info-row"><span>Number of Pages</span><span>: 300</span></div>
+                <div class="info-row"><span>Format Available</span><span>: Paperback , Hardcover, eBook</span></div>
             </div>
 
-            <!-- Partners -->
-            <h3 class="partners-title">Partners</h3>
-            <div class="partners-logos">
-                <img src="images/ebooks 4.png" alt="Ebooks">
-                <img src="images/product 2.png" alt="Product">
-                <img src="images/proline 1.png" alt="ProLine">
+            <!-- Purchase Links -->
+            <h3 class="partners-title">Purchase Links</h3>
+            <div class="purchase-links">
+                <a href="https://amzn.eu/d/2sEQLem" target="_blank" class="book-price-btn">Buy on Amazon</a>
+                <a href="https://www.flipkart.com/hey-know-you-can-heal-if-can-too/p/itm5b51bc299834f" target="_blank"
+                    class="book-price-btn">Buy on Flipkart</a>
             </div>
         </div>
 
         <!-- Right Column -->
         <div class="synopsis-right">
-            <img src="images/front-mountain 1.webp" alt="Book Cover" class="book-cover">
+            <img src="images/hey book.jpg" alt="Book Cover" class="book-cover">
         </div>
+
+
     </div>
 
 
-    <!-- 4 Book section -->
-    <section class="books-section">
-        <h2>Discover the Books That Shaped My Writer’s Voice</h2>
-        <div class="book-grid">
+    <!-- 2ND BOOK DETAILS -->
 
-            <!-- Book 1 -->
-            <div class="books-card">
-                <span class="rating">★ 5.0</span>
-                <div class="new-release">
-                    <h2>New Release</h2>
-                </div>
-                <img src="images/front-mountain 1.webp" alt="Mountain Souls">
-                <h3>Nature – Mountain Souls, Endless Skies</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta liona.
-                </p>
-            </div>
+    <!-- Two book  section-->
+    <div class="Synopsis-Container">
+        <!-- Left Column -->
+        <div class="Synopsis-Right">
+            <h2 class="Synopsis-Title">The Unfiltered – 2025</h2>
+            <p class="Synopsis-Text">
+                "Hey! I Know You Can Heal" is a heartfelt collection of poetry and shayaris written in Hinglish. This
+                book unfolds the raw emotions of love, loss, and healing. As you journey through its pages, you'll find
+                unspoken feelings transformed into words — offering comfort, reflection, and a gentle reminder that
+                healing begins with self-discovery.
+            </p>
 
-            <!-- Book 2 -->
-            <div class="books-card">
-                <span class="rating">★ 5.0</span>
-                <img src="images/front-skies 2.webp" alt="Ashes in the Highlands">
-                <h3>Fiction – Ashes in the Highlands Skies</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta liona.
-                </p>
-            </div>
-
-            <!-- Book 3 -->
-            <div class="books-card">
-                <span class="rating">★ 4.9</span>
-                <img src="images/front-frozen 3.webp" alt="Frozen Hearth">
-                <h3>Romance – Frozen Hearth, Broken Trails</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur del adipi scing elit, sed do eius modte dente reporta liona.
-                </p>
+            <!-- Info Table -->
+            <div class="Synopsis-Info">
+                <div class="Info-Row"><span>Genre</span><span>: Poetic Memoir</span></div>
+                <div class="Info-Row"><span>Language</span><span>: English</span></div>
+                <div class="Info-Row"><span>Publisher</span><span>: Akash Tapdiya</span></div>
+                <div class="Info-Row"><span>Release Date</span><span>: Announcing soon</span></div>
+                <div class="Info-Row"><span>Number of Pages</span><span>: 300</span></div>
+                <div class="Info-Row"><span>Format Available</span><span>: Paperback , Hardcover, eBook</span></div>
             </div>
 
         </div>
-    </section>
 
+        <!-- Right Column -->
+        <div class="Synopsis-Left">
+            <img src="images/front-frozen 3.webp" alt="Book Cover" class="Book-Cover">
+        </div>
+
+
+    </div>
 
     <!-- Review section -->
     <section class="reviews-section">
@@ -1280,8 +1298,9 @@
 
             <!-- Logo + About -->
             <div>
-                <img src="images/logo.png" alt="Logo" style="max-width:120px; margin-bottom:15px;">
-                <p>Poet | Visual Narrator | StorytellerMy words are born from silence , from the raw places of
+                <img src="images/Logo1.jpg" alt="Logo" style="max-width:120px; margin-bottom:15px;">
+                <h3 style="margin: 0; font-size: 18px; color: #fff;bottom: 10px;">AKASH TAPDIYA</h3>
+                <p style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: #ddd; max-width: 320px; margin-left: auto; margin-right: auto;">Poet | Visual Narrator | StorytellerMy words are born from silence , from the raw places of
                     love,loss,healing and the enless search for meaning</p>
             </div>
 

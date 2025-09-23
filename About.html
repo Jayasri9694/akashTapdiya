@@ -240,6 +240,9 @@
             line-height: 1.8;
             color: #444;
             margin-bottom: 30px;
+            text-align: justify;
+            text-justify: inter-word;
+            max-width: 650px;
         }
 
         .about-list {
@@ -576,6 +579,7 @@
         }
 
         /* journey Section */
+        /* Journey Section */
         .journey-section {
             padding: 80px 5%;
             background: #fff;
@@ -591,21 +595,17 @@
             animation: fadeInDown 1s ease-in-out;
         }
 
-        /* Journey Container */
+        /* ✅ Use Grid Layout for 3 per row */
         .journey-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 40px;
-            flex-wrap: nowrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         /* Each Step */
         .journey-step {
-            flex: 1;
-            min-width: 200px;
             animation: fadeInUp 1.2s ease-in-out;
         }
 
@@ -627,88 +627,28 @@
             font-size: 15px;
             color: #555;
             line-height: 1.6;
-            max-width: 250px;
+            max-width: 280px;
             margin: 0 auto;
         }
 
-        /* Arrows Between Steps */
+        /* Hide arrows since grid auto aligns */
         .journey-arrow {
-            font-size: 28px;
-            color: #bbb;
-            align-self: center;
-            animation: fadeIn 1.8s ease-in-out;
+            display: none;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* responsive */
-        /* 📌 Journey Section */
+        /* Responsive */
         @media (max-width: 1024px) {
             .journey-container {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 30px;
-            }
-
-            .journey-arrow {
-                display: none;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            .journey-title {
-                font-size: 26px;
-            }
-
-            .journey-step p {
-                font-size: 14px;
+            .journey-container {
+                grid-template-columns: 1fr;
             }
         }
+
 
         /* Reviews section */
 
@@ -980,40 +920,80 @@
             }
         }
 
-        /* responsive */
-        @media (max-width: 992px) {
+        /* ===========================
+   Footer Section Responsive
+   =========================== */
+
+        /* 📌 Laptop / Tablet (≤1024px) */
+        @media (max-width: 1024px) {
+            .footer-newsletter {
+                flex-direction: column;
+                /* stack title + form */
+                text-align: center;
+                gap: 25px;
+                padding: 60px 30px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                /* 2 columns instead of 3 */
+                gap: 30px;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .footer-main div {
+                margin: 0 auto;
+            }
+
+            .footer-bottom .bottom-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        /* 📌 Mobile (≤768px) */
+        @media (max-width: 768px) {
             .footer-newsletter {
                 flex-direction: column;
                 text-align: center;
-                padding: 40px 20px;
                 gap: 20px;
+                padding: 40px 20px;
             }
 
             .footer-form {
                 flex-direction: column;
                 width: 100%;
+                gap: 10px;
             }
 
-            .footer-form input[type="email"],
-            .footer-form button {
+            .footer-form input[type="email"] {
                 width: 100%;
             }
 
             .footer-main {
-                grid-template-columns: 1fr 1fr;
-                padding: 30px;
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .footer-main {
                 grid-template-columns: 1fr;
+                /* single column */
+                text-align: center;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+
+            .footer-main h2 {
+                margin-bottom: 10px;
+            }
+
+            .footer-bottom .bottom-container {
+                flex-direction: column;
+                gap: 10px;
                 text-align: center;
             }
 
             .footer-social {
                 justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
             }
         }
     </style>
@@ -1310,6 +1290,7 @@
     </section>
 
     <!-- journey section -->
+    <!-- journey section -->
     <section class="journey-section">
         <h2 class="journey-title">My Writing Journey</h2>
 
@@ -1317,8 +1298,8 @@
             <!-- Step 1 -->
             <div class="journey-step">
                 <div class="journey-icon"><i class="fas fa-pen"></i></div>
-                <h3>Early Writing</h3>
-                <p>Lorem ipsum dolor sit utea amet, consectetur adipiscing elit sed.</p>
+                <h3>Early Writing (2016)</h3>
+                <p>When empty pages first began to carry my whispers.</p>
             </div>
 
             <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
@@ -1326,8 +1307,8 @@
             <!-- Step 2 -->
             <div class="journey-step">
                 <div class="journey-icon"><i class="fas fa-globe"></i></div>
-                <h3>Public Posting</h3>
-                <p>Lorem ipsum dolor sit utea amet, consectetur adipiscing elit sed.</p>
+                <h3>Public Posting (2018)</h3>
+                <p>My words stepped out of shadows and touched the world.</p>
             </div>
 
             <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
@@ -1335,8 +1316,8 @@
             <!-- Step 3 -->
             <div class="journey-step">
                 <div class="journey-icon"><i class="fas fa-lightbulb"></i></div>
-                <h3>Skill Building</h3>
-                <p>Lorem ipsum dolor sit utea amet, consectetur adipiscing elit sed.</p>
+                <h3>Skill Building (Ongoing)</h3>
+                <p>Every stumble, every draft, fire shaping the poet’s voice.</p>
             </div>
 
             <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
@@ -1344,11 +1325,30 @@
             <!-- Step 4 -->
             <div class="journey-step">
                 <div class="journey-icon"><i class="fas fa-book-open"></i></div>
-                <h3>Book Release</h3>
-                <p>Lorem ipsum dolor sit utea amet, consectetur adipiscing elit sed.</p>
+                <h3>First Book Release (11 March 2021)</h3>
+                <p>Hey! I Know You Can Heal, my heart’s first offering in print.</p>
+            </div>
+
+            <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
+
+            <!-- Step 5 -->
+            <div class="journey-step">
+                <div class="journey-icon"><i class="fas fa-feather-alt"></i></div>
+                <h3>Upcoming Book</h3>
+                <p>The Unfiltered – a bolder voice, raw and unfiltered.</p>
+            </div>
+
+            <div class="journey-arrow"><i class="fas fa-arrow-right"></i></div>
+
+            <!-- Step 6 -->
+            <div class="journey-step">
+                <div class="journey-icon"><i class="fas fa-award"></i></div>
+                <h3>Author Recognition (2022)</h3>
+                <p>My name surfaced in Google search – no trending tags, just a quiet arrival into the archive.</p>
             </div>
         </div>
     </section>
+
 
     <!-- Review section -->
     <section class="reviews-section">
@@ -1414,8 +1414,11 @@
 
             <!-- Logo + About -->
             <div>
-                <img src="images/logo.png" alt="Logo" style="max-width:120px; margin-bottom:15px;">
-                <p>Poet | Visual Narrator | StorytellerMy words are born from silence , from the raw places of
+                <img src="images/Logo1.jpg" alt="Logo" style="max-width:120px; margin-bottom:15px;">
+                <h3 style="margin: 0; font-size: 18px; color: #fff;bottom: 10px;">AKASH TAPDIYA</h3>
+                <p
+                    style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: #ddd; max-width: 320px; margin-left: auto; margin-right: auto;">
+                    Poet | Visual Narrator | StorytellerMy words are born from silence , from the raw places of
                     love,loss,healing and the enless search for meaning</p>
             </div>
 
