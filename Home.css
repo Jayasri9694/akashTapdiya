@@ -120,7 +120,7 @@
   font-weight: 400;
   position: absolute;
   height: 100px;
-  right: 169px;
+  right: 100px;
   top: 170px;
   margin: 0;
   animation: fadeDown 1s ease forwards;
@@ -678,6 +678,21 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats{
+    flex-direction: column;
+    gap: 70px;
+  }
+
+  .stat-box h2 {
+    font-size: 32px;
+  }
+
+  .stat-box p {
+    font-size: 14px;
   }
 }
 
@@ -1307,13 +1322,10 @@
 
 /* Book image styling */
 .book-image img {
-  width: 320px;
-  /* adjust width */
-  height: auto;
-  /* keep proportions */
+  width: 250px;
+  height: 350px;
   display: block;
   transform: rotate(-8deg);
-  /* tilt the book */
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   position: relative;

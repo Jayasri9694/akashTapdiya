@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar with Dropdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fff5e3;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: #fff5e3;
+            position: relative;
+            z-index: 2000;
+        }
+
+        /* Logo */
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+
+        }
+
+        .navbar .logo img {
+            height: 25px;
+            margin-right: 8px;
+            border-radius: 5px;
+        }
+
+        /* Menu */
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            position: relative;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #444;
+            font-size: 15px;
+            transition: color 0.3s;
+            padding: 8px 12px;
+            display: block;
+        }
+
+        .navbar ul li a:hover {
+            color: #000;
+        }
+
+        /* Dropdown */
+        .navbar ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 150px;
+            z-index: 1000;
+        }
+
+        .navbar ul li:hover ul {
+            display: block;
+        }
+
+        .navbar ul li ul li a {
+            padding: 10px 15px;
+            color: #444;
+        }
+
+        .navbar ul li ul li a:hover {
+            background: #f0f0f0;
+            color: #000;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #ff9800;
+        }
+
+        /* Hamburger */
+        .menu-toggle {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* ====================
+       Mobile Sidebar Menu
+    ==================== */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            /* hidden initially */
+            width: 250px;
+            height: 100%;
+            background: #f0f0f0;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+            transition: left 0.3s ease;
+            padding: 20px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+            /* slide in from left */
+        }
+
+        .mobile-menu .close-btn {
+            font-size: 22px;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .mobile-menu ul li ul {
+            display: none;
+            flex-direction: column;
+            padding-left: 15px;
+        }
+
+        .mobile-menu ul li.active ul {
+            display: flex;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 15px 25px;
+            }
+
+            .navbar ul,
+            .social-icons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+                /* hamburger visible */
+            }
+        }
+
+        /* Blog section */
+        body {
+            margin: 0;
+            font-family: "poppins", serif;
+            background: linear-gradient(to right, rgb(255, 245, 226), rgb(255, 247, 233));
+        }
+
+        .blog-section {
+            text-align: center;
+            padding: 120px 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .blog-section.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .blog-section h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin-top: 20px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .blog-section p {
+            margin-top: 0px;
+            font-size: 18px;
+            color: #444;
+        }
+
+
+        /* 6blog section */
+        .latest-blog-section {
+            padding: 60px 80px;
+            background: #fff;
+            font-family: "Georgia", serif;
+            text-align: center;
+        }
+
+        .latest-blog-section h1 {
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 50px;
+            color: #222;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        /* Blog Grid */
+        .latest-blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .latest-blog-grid.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Blog Content */
+        .blog-content {
+            padding: 18px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: #f2f2f2;
+            font-size: 13px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .blog-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #222;
+            transition: color 0.3s ease;
+        }
+
+        .blog-title:hover {
+            color: #555;
+        }
+
+        .blog-date {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .blog-desc {
+            font-size: 15px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Load More Button */
+        .load-more-btn {
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: #222;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more-btn:hover {
+            background: #444;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .latest-blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .latest-blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .latest-blog-section {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Footer section */
+        .footer-section {
+            background: #222d32;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            padding: 60px 20px 0;
+        }
+
+        /* Footer Main */
+        .footer-main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 50px auto;
+            gap: 40px;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-main h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .footer-main p,
+        .footer-main a {
+            font-size: 0.9rem;
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-main a:hover {
+            color: #fff;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            background: #1a2327;
+            padding: 15px 20px;
+            margin-top: 40px;
+        }
+
+        .footer-bottom .bottom-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom p {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: #aaa;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-social a:hover {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===========================
+   Footer Section Responsive
+   =========================== */
+
+        /* 📌 Laptop / Tablet (≤1024px) */
+        @media (max-width: 1024px) {
+            .footer-newsletter {
+                flex-direction: column;
+                /* stack title + form */
+                text-align: center;
+                gap: 25px;
+                padding: 60px 30px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                /* 2 columns instead of 3 */
+                gap: 30px;
+                padding: 40px 20px;
+                text-align: center;
+            }
+
+            .footer-main div {
+                margin: 0 auto;
+            }
+
+            .footer-bottom .bottom-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+
+        /* 📌 Mobile (≤768px) */
+        @media (max-width: 768px) {
+            .footer-newsletter {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+                padding: 40px 20px;
+            }
+
+            .footer-form {
+                flex-direction: column;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .footer-form input[type="email"] {
+                width: 100%;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                /* single column */
+                text-align: center;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+
+            .footer-main h2 {
+                margin-bottom: 10px;
+            }
+
+            .footer-bottom .bottom-container {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <!-- Logo -->
+        <a href="Home.html" class="logo">
+            <img src="images/Navlogo.jpg" alt="logo">
+            AKASH TAPDIYA
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+
+            <li><a href="BookDetails.html">Book</a></li>
+            <li><a href="Blog.html">Blog</a></li>
+
+            <li><a href="Gallery.html">Gallery</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="https://www.facebook.com/tapdiyaakash16/"><i class="fab fa-facebook-f"></i></a>
+            <a href="tapdiyaakash16@gmail.com"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/tapdiyaji"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/tapdiyaji/"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Hamburger -->
+        <div class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Mobile Sidebar -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="close-btn" id="close-btn"><i class="fas fa-times"></i></div>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+
+            <li><a href="BookDetails.html">Book</a></li>
+            <li><a href="Blog.html">Blog</a></li>
+
+            <li><a href="Gallery.html">Gallery</a></li>
+
+            <li><a href="Contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <script>
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const closeBtn = document.getElementById("close-btn");
+        const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+
+        // Open menu
+        menuToggle.addEventListener("click", () => {
+            mobileMenu.classList.add("active");
+        });
+
+        // Close menu
+        closeBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+        });
+
+        // Dropdown toggle inside sidebar
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                const parentLi = toggle.parentElement;
+                parentLi.classList.toggle("active");
+            });
+        });
+    </script>
+    <!-- blog sections -->
+    <section class="blog-section" id="blog">
+        <h1>Blog</h1>
+        <p>
+            From creative journeys to thoughtful insights find your<br>
+            next read here to improve your skills.
+        </p>
+    </section>
+
+    <script>
+        // Animate Blog section when page loads
+        window.addEventListener("load", () => {
+            document.getElementById("blog").classList.add("active");
+        });
+    </script>
+
+    <!-- 6blog section -->
+    <section class="latest-blog-section">
+        <h1>Latest Blog Update</h1>
+        <div class="latest-blog-grid" id="latestBlogGrid">
+
+            <!-- Card 1 -->
+            <div class="blog-card card-one">
+                <img src="images/new blogs.jpg" alt="Blog 1">
+                <div class="blog-content">
+                    <span class="blog-category">Habits</span>
+                    <h3 class="blog-title">The Story I Will Write</h3>
+                    <p class="blog-date">June 2, 2025</p>
+                    <p class="blog-desc">I will write the history
+                        not the one they told me,
+                        but the one I bled for,
+                        the one that carries my name.
+
+                        I will change the chapters.
+                        Tear down their versions,
+                        burn their scripts,
+                        start again from nothing.
+
+                        I will rewrite the story.
+                        Every wound, every rise,
+                        every scar a verse
+                        that says I was here.
+
+                        I will place myself
+                        at the heart of every storm,
+                        the main character,
+                        the axis of the universe
+                        around which destinies revolve.
+                        This is the present
+                        a journey carved in breath and pain,
+                        a script no hand but mine can hold.
+
+                        And when the future arrives,
+                        they will read these lines
+                        and ache with longing
+                        wishing they had lingered
+                        a little longer,
+                        to witness the rise,
+                        to taste the glory,
+                        to say: I was there.
+                        ...</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="blog-card card-two">
+                <img src="images/new blogs 2.jpg" alt="Blog 2">
+                <div class="blog-content">
+                    <span class="blog-category">Stories</span>
+                    <h3 class="blog-title">Humans Aren’t Real</h3>
+                    <p class="blog-date">June 2, 2025</p>
+                    <p class="blog-desc">In altered states of consciousness, lucid dreaming, astral projection, or even
+                        deep meditatio, one unsettling realization often arises: humans aren’t realNot in the sense that
+                        we don’t exist, but in the way we perceive each other in those states. The people you meet there
+                        don’t show up as flesh-and-blood individuals. Instead, they appear as dream characters,
+                        energetic silhouettes, archetypes, or shifting forms. They feel alive, yet not bound by the same
+                        rules that shape us in waking life.
+
+                        The Dream Characters Within
+
+                        Lucid dreaming allows you to step into your own subconscious. Here, the “people” you encounter
+                        are often constructs of your inner world...</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="blog-card card-three">
+                <img src="images/new blogs 3.jpg" alt="Blog 3">
+                <div class="blog-content">
+                    <span class="blog-category">Love</span>
+                    <h3 class="blog-title">If I Ever Get a Lover Just like Nia</h3>
+                    <p class="blog-date">June 2, 2025</p>
+                    <p class="blog-desc">If I ever get a lover,
+                        it would have to be someone like Nia.
+                        Someone who gets mad at me every time I meet her
+                        not because I forgot the chocolates,
+                        but because I didn’t stay long enough
+                        the last time I was there.
+
+                        She’d ignore me for hours,
+                        pretending I don’t exist
+                        arms crossed, eyes looking away,
+                        like she’s really done with me this time.
+                        And then I’d tease her,
+                        “If you don’t talk nicely,
+                        I’ll just become Anik’s chachu instead.”
+                        And just like that,
+                        she’d get so damn jealous
+                        “No! You’re my chachu.”
+                        And suddenly, everything’s back to normal.
+                        The silence is over.
+                        The world is okay again.
+                        She never expects gifts.
+                        She never asks for more than my presence.
+                        ...</p>
+                </div>
+            </div>
+
+        </div>
+        <button class="load-more-btn">Load More</button>
+    </section>
+
+
+    <script>
+        // Scroll animation
+        window.addEventListener("scroll", () => {
+            const section = document.getElementById("latestBlogGrid");
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                section.classList.add("active");
+            }
+        });
+    </script>
+
+
+    <!-- Footer section -->
+    <footer class="footer-section">
+        <!-- Footer Main -->
+        <div class="footer-main">
+            <!-- Quick Links -->
+            <div>
+                <h2>Quick Link</h2>
+                <a href="#">About</a>
+                <a href="#">Book</a>
+                <a href="#">Event</a>
+                <a href="#">Contact</a>
+            </div>
+
+            <!-- Logo + About -->
+            <div>
+                <img src="images/Logo1.jpg" alt="AKASH TAPDIYA" style="max-width:120px; margin-bottom:10px;">
+                <h3 style="margin: 0; font-size: 18px; color: #fff;bottom: 10px;">AKASH TAPDIYA</h3>
+                <p
+                    style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: #ddd; max-width: 320px; margin-left: auto; margin-right: auto;">
+                    Author | Visual Narrator | Storyteller <br />My words are born from silence , from the raw places of
+                    love,loss,healing and the enless search for meaning</p>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h2>Contact Info</h2>
+                <p>tapdiyaakash16@gmail.com</p>
+                <p>-</p>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="bottom-container">
+                <p>Copyright © 2025. All rights reserved. Powered by UPSURGE MEDIA PRIVATE LIMITED..</p>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/tapdiyaakash16/"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="tapdiyaakash16@gmail.com"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://x.com/tapdiyaji"><i class="fab fa-x-twitter"></i> Twitter</a>
+                    <a href="https://www.linkedin.com/in/tapdiyaji/"><i class="fab fa-linkedin-in"></i> Linkedin</a>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+</body>
+
+</html>
