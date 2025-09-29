@@ -196,21 +196,24 @@
         .book-detail-container {
             display: flex;
             gap: 40px;
-            padding: 50px;
+            padding: 60px 80px;
             background: linear-gradient(to right, rgb(255, 245, 226), rgb(255, 247, 233));
             font-family: "Georgia", serif;
-            align-items: center;
+            align-items: flex-start;
         }
 
         /* Left Side */
         .book-left {
             flex: 1;
+            position: sticky;
+            top: 40px;
+            align-self: flex-start;
             text-align: center;
             padding-left: 50px;
         }
 
         .book-title {
-            font-size: 60px;
+            font-size: 50px;
             font-weight: bold;
             margin-bottom: 20px;
             animation: fadeInUp 1s ease forwards;
@@ -226,8 +229,15 @@
         /* Right Side */
         .book-right {
             flex: 2;
-            padding-left: 50px;
+            max-height: 100vh;
+            overflow-y: auto;
             padding-right: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .book-right::-webkit-scrollbar {
+            display: none;
         }
 
         .book-subtitle {
@@ -238,11 +248,55 @@
         }
 
         .book-description {
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            font-family: "poppins", serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
             color: #444;
+            white-space: pre-line;
+            text-align: justify;
             animation: fadeInUp 1.2s ease forwards;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .book-detail-container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .book-left {
+                padding: 0;
+                position: relative;
+                top: unset;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .book-title {
+                font-size: 36px;
+                margin-bottom: 20px;
+            }
+
+            .book-author-img {
+                margin: 0 auto 20px;
+                display: block;
+            }
+
+            .book-right {
+                max-height: unset;
+                overflow-y: visible;
+                text-align: center;
+            }
+
+            .book-description {
+                text-align: center;
+            }
         }
 
         /* Progress Bars */
@@ -1114,12 +1168,37 @@
         <div class="book-right">
             <h2 class="book-subtitle">Author’s Note :</h2>
             <p class="book-description">
-                This book was born from quiet mornings among the peaks, when the world slowed down
-                and the only sound was the wind tracing the edge of the mountains. It’s a reflection
-                of how solitude, when embraced, reveals the deepest parts of who we are. In the hush
-                between thoughts and the vastness of untouched landscapes, I found not only inspiration,
-                but a language beyond words a silent understanding that flowed through every moment,
-                urging me to write what could never be spoken aloud.
+                it’s a map of becoming.
+                A window into the words I’ve written,
+                the frames I’ve captured,
+                the stories I’ve carried with me.
+
+                Not a list of accomplishments,
+                but a trail of moments that shaped me.
+                Not perfection,
+                but presence.
+
+                Every page here is a reflection —
+                sometimes quiet, sometimes bold,
+                but always honest.
+
+                To those who’ve encouraged me,
+                you are stitched between every line.
+                To those who doubted,
+                you taught me to define myself.
+                And to the strangers who arrive here,
+                you are proof that the work travels
+                further than I ever imagined.
+
+                Read this not as credentials,
+                but as conversations.
+                Not as design,
+                but as fragments of a voice
+                finding its way.
+
+                This is my portfolio —
+                a beginning,
+                a becoming.
             </p>
 
             <!-- Progress Bars -->
@@ -1300,7 +1379,9 @@
             <div>
                 <img src="images/Logo1.jpg" alt="Logo" style="max-width:120px; margin-bottom:15px;">
                 <h3 style="margin: 0; font-size: 18px; color: #fff;bottom: 10px;">AKASH TAPDIYA</h3>
-                <p style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: #ddd; max-width: 320px; margin-left: auto; margin-right: auto;">Poet | Visual Narrator | StorytellerMy words are born from silence , from the raw places of
+                <p
+                    style="margin-top: 12px; font-size: 14px; line-height: 1.6; color: #ddd; max-width: 320px; margin-left: auto; margin-right: auto;">
+                    Poet | Visual Narrator | StorytellerMy words are born from silence , from the raw places of
                     love,loss,healing and the enless search for meaning</p>
             </div>
 
