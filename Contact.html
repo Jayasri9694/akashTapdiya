@@ -763,7 +763,7 @@
         <p class="contact-text">Pune Maharashtra, 411007</p>
       </div>
 
-    
+
     </div>
   </div>
 
@@ -774,18 +774,18 @@
       <div class="contact-form-box">
         <h2 class="contact-form-title">Get in Touch</h2>
 
-        <form class="contact-form">
+        <form class="contact-form" id="contactForm">
           <div class="form-row">
-            <input type="text" class="form-input" placeholder="First Name">
-            <input type="text" class="form-input" placeholder="Last Name">
+            <input type="text" id="firstName" class="form-input" placeholder="First Name" required>
+            <input type="text" id="lastName" class="form-input" placeholder="Last Name" required>
           </div>
 
           <div class="form-row">
-            <input type="email" class="form-input" placeholder="Email Address">
-            <input type="tel" class="form-input" placeholder="Phone Number">
+            <input type="email" id="email" class="form-input" placeholder="Email Address" required>
+            <input type="tel" id="phone" class="form-input" placeholder="Phone Number" required>
           </div>
 
-          <textarea class="form-textarea" placeholder="Leave us a message"></textarea>
+          <textarea id="message" class="form-textarea" placeholder="Leave us a message" required></textarea>
 
           <div class="form-checkbox">
             <input type="checkbox" id="agree">
@@ -794,10 +794,48 @@
 
           <button type="submit" class="form-button">Send Message</button>
         </form>
+
+        <!-- ✅ Feedback Message -->
+        <p id="formMessage" style="margin-top:15px; font-size:16px; color:green; display:none;">
+          ✅ Your message has been sent successfully!
+        </p>
+
       </div>
 
     </div>
   </section>
+
+  <script>
+  document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // stop default form submit
+
+    // get values
+    const firstName = document.getElementById("firstName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const agree = document.getElementById("agree").checked;
+
+    // validation
+    if (!firstName || !lastName || !email || !phone || !message) {
+      alert("⚠️ Please fill in all fields.");
+      return;
+    }
+
+    if (!agree) {
+      alert("⚠️ You must agree to the terms before submitting.");
+      return;
+    }
+
+    // Show success message
+    document.getElementById("formMessage").style.display = "block";
+
+    // clear fields after submit
+    document.getElementById("contactForm").reset();
+  });
+</script>
+
   <!-- Footer section -->
   <footer class="footer-section">
 
@@ -834,7 +872,7 @@
     <!-- Footer Bottom -->
     <div class="footer-bottom">
       <div class="bottom-container">
-         <p>Copyright © 2025 AkashTapdiya. All rights reserved. Powered by UPSURGE MEDIA PRIVATE LIMITED..</p>
+        <p>Copyright © 2025 AkashTapdiya. All rights reserved. Powered by UPSURGE MEDIA PRIVATE LIMITED..</p>
         <div class="footer-social">
           <a href="https://www.facebook.com/tapdiyaakash16/"><i class="fab fa-facebook-f"></i> Facebook</a>
           <a href="https://www.instagram.com/royal_psyco/"><i class="fab fa-instagram"></i> Instagram</a>
