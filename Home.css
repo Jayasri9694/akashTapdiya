@@ -682,7 +682,7 @@
 }
 
 @media (max-width: 768px) {
-  .stats{
+  .stats {
     flex-direction: column;
     gap: 70px;
   }
