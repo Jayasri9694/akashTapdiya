@@ -438,15 +438,21 @@
         /* Info Table */
         .synopsis-info {
             margin-bottom: 30px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+            font-family: "Georgia", serif;
         }
 
         .info-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            padding: 6px 0;
-            border-bottom: 1px solid #eee;
+
             animation: fadeInUp 1.4s ease forwards;
+            display: grid;
+            grid-template-columns: 180px auto;
+            padding: 8px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            align-items: start;
         }
 
         /* Right Side (Book Image) */
@@ -572,9 +578,20 @@
             }
         }
 
+        .info-row span:first-child,
+        .book2-row span:first-child {
+            font-weight: 600;
+            color: #222;
+        }
+
+        .info-row span:last-child,
+        .book2-row span:last-child {
+            color: #444;
+            white-space: normal;
+        }
 
         /*  2nd bookdetails Container Layout */
-        /* 2nd Book Container Layout */
+
         .book2-container {
             display: flex;
             gap: 40px;
@@ -607,15 +624,20 @@
         /* Info Table */
         .book2-info {
             margin-bottom: 30px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+            font-family: "Georgia", serif;
         }
 
         .book2-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 16px;
-            padding: 6px 0;
-            border-bottom: 1px solid #eee;
             animation: fadeInUp 1.4s ease forwards;
+            display: grid;
+            grid-template-columns: 180px auto;
+            padding: 8px 0;
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            align-items: start;
         }
 
         /* Right Side (Book Image) */
@@ -1123,7 +1145,7 @@
         <div class="book-right">
             <h2 class="book-subtitle">Author’s Note :</h2>
             <p class="book-description">
-                This isn’t a portfolio, 
+                This isn’t a portfolio,
                 it’s a map of becoming.
                 A window into the words I’ve written,
                 the frames I’ve captured,
