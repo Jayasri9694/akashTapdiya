@@ -228,92 +228,86 @@
         }
 
 
-        /* 6blog section */
+        /* Blog Section */
         .latest-blog-section {
-            padding: 60px 80px;
+            padding: 60px 40px;
             background: #fff;
-            font-family: "Georgia", serif;
             text-align: center;
         }
 
         .latest-blog-section h1 {
             font-size: 38px;
             font-weight: bold;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             color: #222;
-            animation: fadeInDown 1s ease forwards;
         }
 
-        /* Blog Grid */
-        .latest-blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+        /* Swiper */
+        .blog-swiper {
+            width: 100%;
+            padding-bottom: 40px;
         }
 
-        .latest-blog-grid.active {
-            opacity: 1;
-            transform: translateY(0);
+        .swiper-wrapper {
+            display: flex;
+            /* force row */
+        }
+
+        .swiper-slide {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
         }
 
         /* Blog Card */
         .blog-card {
+            width: 100%;
+            max-width: 350px;
             background: #fff;
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: left;
-            animation: fadeInUp 1s ease forwards;
         }
 
         .blog-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
-            display: block;
         }
 
         .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
-        /* Blog Content */
         .blog-content {
-            padding: 18px;
+            padding: 16px;
         }
 
         .blog-category {
             display: inline-block;
-            background: #f2f2f2;
+            background: #f5f5f5;
             font-size: 13px;
             padding: 4px 10px;
             border-radius: 4px;
-            margin-bottom: 10px;
-            color: #333;
+            margin-bottom: 8px;
             font-weight: 500;
+            color: #333;
         }
 
         .blog-title {
             font-size: 20px;
             font-weight: bold;
-            margin: 10px 0;
+            margin: 8px 0;
             color: #222;
-            transition: color 0.3s ease;
-        }
-
-        .blog-title:hover {
-            color: #555;
         }
 
         .blog-date {
             font-size: 14px;
             color: #777;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .blog-desc {
@@ -322,64 +316,14 @@
             line-height: 1.6;
         }
 
-        /* Load More Button */
-        .load-more-btn {
-            margin-top: 40px;
-            padding: 12px 30px;
+        /* Swiper Pagination */
+        .swiper-pagination-bullet {
+            background: #aaa;
+            opacity: 1;
+        }
+
+        .swiper-pagination-bullet-active {
             background: #222;
-            color: #fff;
-            border: none;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .load-more-btn:hover {
-            background: #444;
-            transform: translateY(-3px);
-        }
-
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .latest-blog-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .latest-blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .latest-blog-section {
-                padding: 40px 20px;
-            }
         }
 
         /* Footer section */
@@ -643,123 +587,152 @@
         });
     </script>
 
-    <!-- 6blog section -->
     <section class="latest-blog-section">
         <h1>Latest Blog Update</h1>
-        <div class="latest-blog-grid" id="latestBlogGrid">
 
-            <!-- Card 1 -->
-            <div class="blog-card card-one">
-                <img src="images/new blogs.jpg" alt="Blog 1">
-                <div class="blog-content">
-                    <span class="blog-category">Habits</span>
-                    <h3 class="blog-title">The Story I Will Write</h3>
-                    <p class="blog-date">June 2, 2025</p>
-                    <p class="blog-desc">I will write the history
-                        not the one they told me,
-                        but the one I bled for,
-                        the one that carries my name.
+        <!-- Swiper -->
+        <div class="swiper blog-swiper">
+            <div class="swiper-wrapper">
 
-                        I will change the chapters.
-                        Tear down their versions,
-                        burn their scripts,
-                        start again from nothing.
+                <!-- Card 1 -->
+                <div class="swiper-slide">
+                    <div class="blog-card">
+                        <img src="images/new blogs.jpg" alt="Blog 1">
+                        <div class="blog-content">
+                            <span class="blog-category">Habits</span>
+                            <h3 class="blog-title">The Story I Will Write</h3>
+                            <p class="blog-date">June 2, 2025</p>
+                            <p class="blog-desc">I will write the history
+                                not the one they told me,
+                                but the one I bled for,
+                                the one that carries my name.
 
-                        I will rewrite the story.
-                        Every wound, every rise,
-                        every scar a verse
-                        that says I was here.
+                                I will change the chapters.
+                                Tear down their versions,
+                                burn their scripts,
+                                start again from nothing.
 
-                        I will place myself
-                        at the heart of every storm,
-                        the main character,
-                        the axis of the universe
-                        around which destinies revolve.
-                        This is the present
-                        a journey carved in breath and pain,
-                        a script no hand but mine can hold.
+                                I will rewrite the story.
+                                Every wound, every rise,
+                                every scar a verse
+                                that says I was here.
 
-                        And when the future arrives,
-                        they will read these lines
-                        and ache with longing
-                        wishing they had lingered
-                        a little longer,
-                        to witness the rise,
-                        to taste the glory,
-                        to say: I was there.
-                        ...</p>
+                                I will place myself
+                                at the heart of every storm,
+                                the main character,
+                                the axis of the universe
+                                around which destinies revolve.
+                                This is the present
+                                a journey carved in breath and pain,
+                                a script no hand but mine can hold.
+
+                                And when the future arrives,
+                                they will read these lines
+                                and ache with longing
+                                wishing they had lingered
+                                a little longer,
+                                to witness the rise,
+                                to taste the glory,
+                                to say: I was there.
+                                ...</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Card 2 -->
+                <div class="swiper-slide">
+                    <div class="blog-card">
+                        <img src="images/new blogs 2.jpg" alt="Blog 2">
+                        <div class="blog-content">
+                            <span class="blog-category">Stories</span>
+                            <h3 class="blog-title">Humans Aren’t Real</h3>
+                            <p class="blog-date">June 2, 2025</p>
+                            <p class="blog-desc">In altered states of consciousness, lucid dreaming, astral projection,
+                                or even
+                                deep meditatio, one unsettling realization often arises: humans aren’t realNot in the
+                                sense that
+                                we don’t exist, but in the way we perceive each other in those states. The people you
+                                meet there
+                                don’t show up as flesh-and-blood individuals. Instead, they appear as dream characters,
+                                energetic silhouettes, archetypes, or shifting forms. They feel alive, yet not bound by
+                                the same
+                                rules that shape us in waking life.
+
+                                The Dream Characters Within
+
+                                Lucid dreaming allows you to step into your own subconscious. Here, the “people” you
+                                encounter
+                                are often constructs of your inner world...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="swiper-slide">
+                    <div class="blog-card">
+                        <img src="images/new blogs 3.jpg" alt="Blog 3">
+                        <div class="blog-content">
+                            <span class="blog-category">Love</span>
+                            <h3 class="blog-title">If I Ever Get a Lover Just like Nia</h3>
+                            <p class="blog-date">June 2, 2025</p>
+                            <p class="blog-desc">If I ever get a lover,
+                                it would have to be someone like Nia.
+                                Someone who gets mad at me every time I meet her
+                                not because I forgot the chocolates,
+                                but because I didn’t stay long enough
+                                the last time I was there.
+
+                                She’d ignore me for hours,
+                                pretending I don’t exist
+                                arms crossed, eyes looking away,
+                                like she’s really done with me this time.
+                                And then I’d tease her,
+                                “If you don’t talk nicely,
+                                I’ll just become Anik’s chachu instead.”
+                                And just like that,
+                                she’d get so damn jealous
+                                “No! You’re my chachu.”
+                                And suddenly, everything’s back to normal.
+                                The silence is over.
+                                The world is okay again.
+                                She never expects gifts.
+                                She never asks for more than my presence.
+                                ...</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Card 2 -->
-            <div class="blog-card card-two">
-                <img src="images/new blogs 2.jpg" alt="Blog 2">
-                <div class="blog-content">
-                    <span class="blog-category">Stories</span>
-                    <h3 class="blog-title">Humans Aren’t Real</h3>
-                    <p class="blog-date">June 2, 2025</p>
-                    <p class="blog-desc">In altered states of consciousness, lucid dreaming, astral projection, or even
-                        deep meditatio, one unsettling realization often arises: humans aren’t realNot in the sense that
-                        we don’t exist, but in the way we perceive each other in those states. The people you meet there
-                        don’t show up as flesh-and-blood individuals. Instead, they appear as dream characters,
-                        energetic silhouettes, archetypes, or shifting forms. They feel alive, yet not bound by the same
-                        rules that shape us in waking life.
-
-                        The Dream Characters Within
-
-                        Lucid dreaming allows you to step into your own subconscious. Here, the “people” you encounter
-                        are often constructs of your inner world...</p>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="blog-card card-three">
-                <img src="images/new blogs 3.jpg" alt="Blog 3">
-                <div class="blog-content">
-                    <span class="blog-category">Love</span>
-                    <h3 class="blog-title">If I Ever Get a Lover Just like Nia</h3>
-                    <p class="blog-date">June 2, 2025</p>
-                    <p class="blog-desc">If I ever get a lover,
-                        it would have to be someone like Nia.
-                        Someone who gets mad at me every time I meet her
-                        not because I forgot the chocolates,
-                        but because I didn’t stay long enough
-                        the last time I was there.
-
-                        She’d ignore me for hours,
-                        pretending I don’t exist
-                        arms crossed, eyes looking away,
-                        like she’s really done with me this time.
-                        And then I’d tease her,
-                        “If you don’t talk nicely,
-                        I’ll just become Anik’s chachu instead.”
-                        And just like that,
-                        she’d get so damn jealous
-                        “No! You’re my chachu.”
-                        And suddenly, everything’s back to normal.
-                        The silence is over.
-                        The world is okay again.
-                        She never expects gifts.
-                        She never asks for more than my presence.
-                        ...</p>
-                </div>
-            </div>
-
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
-        <button class="load-more-btn">Load More</button>
     </section>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Scroll animation
-        window.addEventListener("scroll", () => {
-            const section = document.getElementById("latestBlogGrid");
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
-                section.classList.add("active");
+        const swiper = new Swiper(".blog-swiper", {
+            loop: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            slidesPerView: 3,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            speed: 800,
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
             }
         });
     </script>
+
+
 
 
     <!-- Footer section -->
