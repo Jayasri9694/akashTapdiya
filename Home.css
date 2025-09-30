@@ -1654,7 +1654,7 @@ body {
   animation: fadeInLeft 1s ease;
 }
 
-.blog-header .view-more {
+.blog-btn {
   display: inline-block;
   padding: 12px 22px;
   background: #222;
@@ -1662,13 +1662,17 @@ body {
   font-size: 0.95rem;
   border-radius: 5px;
   text-decoration: none;
+  margin-left: 135px;
+  margin-bottom: 20px;
   transition: all 0.3s ease;
   animation: fadeInRight 1s ease;
 }
 
-.blog-header .view-more:hover {
+.blog-btn:hover {
   background: #444;
 }
+
+
 
 /* Blog Grid */
 .blog-grid {
@@ -1874,10 +1878,6 @@ body {
     font-size: 0.85rem;
   }
 
-  .blog-header .view-more {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-  }
 }
 
 
