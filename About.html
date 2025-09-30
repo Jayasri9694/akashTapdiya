@@ -328,124 +328,7 @@
             }
         }
 
-        /* Timeline section */
 
-        .timeline-section {
-            padding: 80px 8%;
-            background: #fff;
-            font-family: "Poppins", sans-serif;
-            text-align: center;
-        }
-
-        .timeline-title {
-            font-size: 42px;
-            font-weight: 600;
-            margin-bottom: 60px;
-            color: #222;
-            animation: fadeInDown 1s ease-in-out;
-        }
-
-        /* Timeline Layout */
-        .timeline-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 80px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .timeline-column {
-            position: relative;
-            flex: 1;
-        }
-
-        .timeline-column::before {
-            content: "";
-            position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: #ddd;
-            margin-left: -1px;
-        }
-
-        /* Timeline Items */
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            padding-left: 50px;
-            text-align: left;
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: 11px;
-            top: 6px;
-            width: 14px;
-            height: 14px;
-            background: #f4a300;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .timeline-content h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #222;
-        }
-
-        .timeline-content p {
-            font-size: 15px;
-            color: #555;
-            line-height: 1.6;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        /* 📌 Timeline Section */
-        @media (max-width: 1024px) {
-            .timeline-container {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .timeline-item {
-                padding-left: 35px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .timeline-title {
-                font-size: 28px;
-            }
-        }
 
         /* poster section */
 
@@ -475,6 +358,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: sticky;
+            top: 100px;
+            height: fit-content;
             animation: fadeInLeft 1.2s ease-in-out;
         }
 
@@ -493,9 +379,16 @@
 
         /* Right Side (Text & Button) */
         .book-right {
-            flex: 1;
-            min-width: 320px;
+            flex: 2;
+            max-width: 500px;
+            overflow-y: auto;
+            padding-right: 15px;
+            scrollbar-width: none;
             animation: fadeInRight 1.4s ease-in-out;
+        }
+
+        .book-right::-webkit-scrollbar {
+            display: none;
         }
 
         .book-title {
@@ -1165,98 +1058,7 @@
     </script>
 
 
-    <!-- Timeline section -->
-    <section class="timeline-section">
-        <h2 class="timeline-title">Milestones & Achievements</h2>
 
-        <div class="timeline-container">
-            <!-- Left Column -->
-            <div class="timeline-column">
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2016</h3>
-                        <p>Innovative Product Award by National Association.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2017</h3>
-                        <p>Outstanding Author Recognition for Published Work</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2018</h3>
-                        <p>Received the Local Voices Award for standout storytelling in public.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2019</h3>
-                        <p>Honored with the Young Talent of the Year in Writing Award.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2020</h3>
-                        <p>Best Writer Award for My Journey, a debut that sparked it all.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column -->
-            <div class="timeline-column">
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2021</h3>
-                        <p>Named Emerging Author of the Year by the National Writers Guild.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2022</h3>
-                        <p>Honored with the Readers Choice Award, thanks to heartfelt support.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2023</h3>
-                        <p>Recognized as Most Inspiring Female Writer in the Global Book Awards.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2024</h3>
-                        <p>Won Storyteller of the Year at the International Literary Festival.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <div class="timeline-content">
-                        <h3>2025</h3>
-                        <p>Honored as Voice of the Year, celebrating stories that moved the world.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- poster section -->
     <section class="book-section">
         <div class="book-container">
@@ -1275,42 +1077,39 @@
                     The Becoming!
                     <br />
                     I was not carved, I was called.
-                    <br/>
+                    <br />
                     Not taught, but tuned
-                    by hands I cannot name,
-<br/>
-                    by silence that knew my sound.
                     <br />
-                    This feather - placed, not found.
-                    This flute- emptied, not broken.
-                    <br/>
-                    I do not play - I become
-                    what the breath remembers.
-                    <br />
-                    Each note is a memory
-                    of who I was before forgetting.<br/>
-                    Each pause, a prayer
-                    carried deep within me.
-                    <br />
-                    I am not the music
-                    I am its becoming.<br/>
-                    A vessel of rhythm,
-                    a witness to grace.
-                    <br />
-                    He shapes me still
-                    not with thunder,
-                    <br/>
-                    but with touch,
-                    not with answers,
-                    but with unfolding.
-                    <br />
-                    And so I rise,
-                    not to perform,
-                    but to reveal
-                    the version of me
-                    <br/>
-                    He always knew
-                    I could become.
+                    by hands I cannot name,<br />
+                    by silence that knew my sound.<br />
+
+                    This feather - placed, not found.<br />
+                    This flute- emptied, not broken.<br />
+                    I do not play - I become<br />
+                    what the breath remembers.<br />
+
+                    Each note is a memory<br />
+                    of who I was before forgetting.<br />
+                    Each pause, a prayer<br />
+                    carried deep within me.<br />
+
+                    I am not the music<br />
+                    I am its becoming.<br />
+                    A vessel of rhythm,<br />
+                    a witness to grace.<br />
+
+                    He shapes me still<br />
+                    not with thunder,<br />
+                    but with touch,<br />
+                    not with answers,<br />
+                    but with unfolding.<br />
+
+                    And so I rise,<br />
+                    not to perform,<br />
+                    but to reveal<br />
+                    the version of me<br />
+                    He always knew<br />
+                    I could become.<br />
                 </p>
             </div>
         </div>
